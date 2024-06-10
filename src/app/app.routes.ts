@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { DuctSelectorComponent } from './duct/duct-selector/duct-selector.component';
+import { DuctSelectorComponent } from './components/duct-selector/duct-selector.component';
 
 export const routes: Routes = [
   {
