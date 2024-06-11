@@ -49,14 +49,14 @@ export class IconRegisterService {
     this.importIconsCollection(this.iconlist);
   }
 
-  public importIcon(name: string) {
+  public importIcon(name: string): MatIconRegistry {
     return this.iconRegistry.addSvgIcon(
       `${name}`,
       this.sanitizer.bypassSecurityTrustResourceUrl(`images/icons/${name}.svg`)
     );
   }
 
-  public importIconsCollection(nameCollection: string[]) {
+  public importIconsCollection(nameCollection: string[]): void {
     nameCollection.forEach(name => {
       this.importIcon(name);
     });
