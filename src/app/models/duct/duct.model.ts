@@ -7,16 +7,22 @@ import { Section } from "./section.model";
 import { Shape } from "./shape.model";
 import { Width } from "./width.model";
 
-abstract class DuctCore {
-  protected shape: Shape;
+interface IDuct {
+  shape: Shape;
+  section: Section;
+  material: Material;
+  equivalentDiameter: number;
+  length: Length;
+}
+
+abstract class Duct implements IDuct {
+  public shape: Shape;
   public section: Section;
   public material: Material;
   public equivalentDiameter: number;
   public length: Length;
 
-  constructor (
-    shape: Shape,
-  ) {
+  constructor (shape: Shape) {
     this.shape = shape;
     this.material = new Material;
     this.section = new Section;
@@ -25,41 +31,42 @@ abstract class DuctCore {
   }
 }
 
-interface IDuctFactory {
-  createDuct(shape: Shape): DuctCore
-}
+export class CircularDuct extends Duct {
+  override readonly shape: Shape;
 
-export class CircularDuct extends DuctCore {
   public diameter: Diameter;
 
   constructor (shape: Shape) {
     super(shape);
+    this.shape = shape;
     this.diameter = new Diameter;
   }
-
 }
 
-export class RectangularDuct extends DuctCore  {
+export class RectangularDuct extends Duct  {
+  override readonly shape: Shape;
+
   public width: Width;
   public height: Height;
   public ratio: Ratio;
 
   constructor(shape: Shape) {
     super(shape);
+    this.shape = shape;
     this.width = new Width;
     this.height = new Height;
     this.ratio = new Ratio;
   }
 }
 
-class DuctFactory implements IDuctFactory {
-  public createDuct(shape: Shape): DuctCore {
+export class DuctFactory {
+  static createDuct(shape: Shape) {
     switch (shape.getValue()) {
       case 'circular':
         return new CircularDuct(shape);
         break;
       case 'rectangular':
-        return new RectangularDuct(shape);
+        return  new RectangularDuct(shape);
         break;
       default:
         return new CircularDuct(shape);
