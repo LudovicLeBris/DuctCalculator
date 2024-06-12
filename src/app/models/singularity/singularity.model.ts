@@ -18,6 +18,10 @@ export abstract class Singularity {
     this.value = SingularitiesValues[this.name]['values'][this.shape];
   }
 
+  public getName(): string {
+    return this.name;
+  }
+
   public getDisplayName(): string {
     return this.displayName;
   }
