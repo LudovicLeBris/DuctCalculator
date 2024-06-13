@@ -19,7 +19,7 @@ export const normalizedDiameters = [
   1250
 ] as const;
 
-type DiameterValue = (typeof normalizedDiameters)[number];
+export type DiameterValue = (typeof normalizedDiameters)[number];
 
 export class Diameter extends TechnicalProperty {
   override readonly name = 'diameter';
