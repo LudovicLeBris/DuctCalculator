@@ -26,25 +26,25 @@ describe('DuctCalculationService', () => {
   });
 
   it('#equivalentDiameter should return the right calculation for a 500 width and a 250 height dimensions', () => {
-    expect(RectangularDuctCalculationService.equivalentDiameter(mockedWidth, mockedHeight)).toBeCloseTo(384.7904, 4);
+    expect(service.equivalentDiameter(mockedWidth, mockedHeight)).toBeCloseTo(384.7904, 4);
   });
 
   it('#ratio should return the right calculation for a 500 width and a 250 height dimensions', () => {
-    expect(RectangularDuctCalculationService.ratio(mockedWidth, mockedHeight)).toBe(2);
+    expect(service.ratio(mockedWidth, mockedHeight)).toBe(2);
   });
 
   it('#ratio should return the right calculation for a 200 width and a 600 height dimensions');
 
   it('#sideSize should return the right calculation for a 0.1163 section and a 250 known side dimension', () => {
-    expect(RectangularDuctCalculationService.sideSize(mockedSection, 250)).toBeCloseTo(465, 0)
+    expect(service.sideSize(mockedSection, 250)).toBeCloseTo(465, 0)
   });
 
   it('#sectionByDimensions should return the right calculation for a 500 width and a 250 height dimensions', () => {
-    expect(RectangularDuctCalculationService.sectionByDimensions(mockedWidth, mockedHeight)).toBeCloseTo(0.1163, 4);
+    expect(service.sectionByDimensions(mockedWidth, mockedHeight)).toBeCloseTo(0.1163, 4);
   });
 
   it('#dimensionsByRatio should return the right calculation for a 0.1163 section and a 2 ratio', () => {
-    expect(RectangularDuctCalculationService.dimensionsByRatio(mockedSection, mockedRatio)[0]).toBeCloseTo(482.286, 3);
-    expect(RectangularDuctCalculationService.dimensionsByRatio(mockedSection, mockedRatio)[1]).toBeCloseTo(241.143, 3);
+    expect(service.dimensionsByRatio(mockedSection, mockedRatio)[0]).toBeCloseTo(482.286, 3);
+    expect(service.dimensionsByRatio(mockedSection, mockedRatio)[1]).toBeCloseTo(241.143, 3);
   });
 });

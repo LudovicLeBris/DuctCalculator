@@ -20,10 +20,10 @@ describe('GeneralDuctCalculationService', () => {
   });
 
   it('#closerNormalizedDiameter should return the next normalized diameter', () => {
-    expect(GeneralDuctCalculationService.closerNormalizedDiameter(308.12)).toBe(315);
+    expect(service.closerNormalizedDiameter(308.12)).toBe(315);
   });
 
   it('#sectionByFlorate should retrun the right calculation for a 2000 flowrate and a 7 flowspeed', () => {
-    expect(GeneralDuctCalculationService.sectionByFlowrate(mockedFlowrate, mockedFlowspeed)).toBeCloseTo(0.0794, 4);
+    expect(service.sectionByFlowrate(mockedFlowrate, mockedFlowspeed)).toBeCloseTo(0.0794, 4);
   });
 });

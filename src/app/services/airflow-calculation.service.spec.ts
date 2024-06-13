@@ -24,10 +24,10 @@ describe('AirflowCalculationService', () => {
   });
 
   it('#flowspeed should return the right calculation with 7 flowspeed and 0.0779 section', () => {
-    expect(AirflowCalculationService.flowrate(mockedFlowspeed, mockedSection)).toBeCloseTo(1963.08, 2);
+    expect(service.flowrate(mockedFlowspeed, mockedSection)).toBeCloseTo(1963.08, 2);
   });
 
   it('#flowspeed should return the right calculation whit 1963 flowrate and 0.0779 section', () => {
-    expect(AirflowCalculationService.flowspeed(mockedFlowrate, mockedSection)).toBeCloseTo(7,2);
+    expect(service.flowspeed(mockedFlowrate, mockedSection)).toBeCloseTo(7,2);
   });
 });

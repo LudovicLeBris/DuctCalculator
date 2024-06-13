@@ -10,16 +10,16 @@ export class CircularDuctCalculationService extends GeneralDuctCalculationServic
 
   constructor() {super()}
 
-  static equivalentDiameter(diameter: Diameter): number {
+  public equivalentDiameter(diameter: Diameter): number {
     return diameter.getValue();
   }
 
-  static sectionByDimensions(diameter: Diameter) {
+  public sectionByDimensions(diameter: Diameter) {
     const equivalentDiameter = this.equivalentDiameter(diameter);
     return (Math.PI * (equivalentDiameter/1000)**2) / 4;
   }
 
-  static dimensionsBySection(section: Section) {
+  public dimensionsBySection(section: Section) {
     return (Math.sqrt((section.getValue() * 4) / Math.PI)) * 1000;
   }
 }

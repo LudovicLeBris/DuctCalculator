@@ -10,11 +10,11 @@ export class AirflowCalculationService {
 
   constructor() { }
 
-  static flowrate(flowspeed: Flowspeed, section: Section) {
+  public flowrate(flowspeed: Flowspeed, section: Section) {
     return (flowspeed.getValue() * section.getValue()) * 3600;
   }
 
-  static flowspeed(flowrate: Flowrate, section: Section) {
+  public flowspeed(flowrate: Flowrate, section: Section) {
     return (flowrate.getValue() / 3600) / section.getValue();
   }
 }

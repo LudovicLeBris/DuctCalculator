@@ -21,14 +21,14 @@ describe('CircularDuctCalculationService', () => {
   });
 
   it('#equivalentDiameter should return the right calculation for a 315 diameter', () => {
-    expect(CircularDuctCalculationService.equivalentDiameter(mockedDiameter)).toBe(315);
+    expect(service.equivalentDiameter(mockedDiameter)).toBe(315);
   });
 
   it('#sectionByDimension should return the right calculation for a 315 diameter', () => {
-    expect(CircularDuctCalculationService.sectionByDimensions(mockedDiameter)).toBeCloseTo(0.0779, 4);
+    expect(service.sectionByDimensions(mockedDiameter)).toBeCloseTo(0.0779, 4);
   });
 
   it('#dimensionsBySection should return the right calculation for a 0.0779 section', () => {
-    expect(CircularDuctCalculationService.dimensionsBySection(mockedSection)).toBeCloseTo(314.937,3);
+    expect(service.dimensionsBySection(mockedSection)).toBeCloseTo(314.937,3);
   });
 });

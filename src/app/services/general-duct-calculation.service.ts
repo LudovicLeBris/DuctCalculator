@@ -10,11 +10,11 @@ export class GeneralDuctCalculationService {
 
   constructor() { }
 
-  static sectionByFlowrate(flowrate: Flowrate, flowspeed: Flowspeed): number {
+  public sectionByFlowrate(flowrate: Flowrate, flowspeed: Flowspeed): number {
     return (flowrate.getValue() / 3600) / flowspeed.getValue();
   }
 
-  static closerNormalizedDiameter(equivalentDiameter: number): number {
+  public closerNormalizedDiameter(equivalentDiameter: number): number {
     return normalizedDiameters.find(diameter => diameter >= equivalentDiameter)!;
   }
 }

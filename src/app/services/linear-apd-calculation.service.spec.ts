@@ -7,9 +7,11 @@ import { CircularDuct, DuctFactory, RectangularDuct } from '../models/duct/duct.
 import { Shape } from '../models/duct/shape.model';
 import { CircularDuctCalculationService } from './circular-duct-calculation.service';
 import { AirflowCalculationService } from './airflow-calculation.service';
+import { inject } from '@angular/core';
 
 describe('LinearApdCalculationService', () => {
   let service: LinearApdCalculationService;
+  let circularDuctCalculationService: CircularDuctCalculationService = new CircularDuctCalculationService;
 
   const mockedAir = new Air;
 
@@ -18,8 +20,8 @@ describe('LinearApdCalculationService', () => {
   const mockedDuct = new CircularDuct(mockedShape);
   mockedDuct.diameter.setValue(315);
   mockedDuct.length.setValue(1);
-  mockedDuct.equivalentDiameter = CircularDuctCalculationService.equivalentDiameter(mockedDuct.diameter);
-  mockedDuct.section.setValue(CircularDuctCalculationService.sectionByDimensions(mockedDuct.diameter));
+  mockedDuct.equivalentDiameter = circularDuctCalculationService.equivalentDiameter(mockedDuct.diameter);
+  mockedDuct.section.setValue(circularDuctCalculationService.sectionByDimensions(mockedDuct.diameter));
 
   const mockedAirFlow = new Airflow;
   mockedAirFlow.flowrate.setValue(2000);
