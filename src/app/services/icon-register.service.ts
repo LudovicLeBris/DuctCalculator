@@ -33,6 +33,7 @@ export class IconRegisterService {
     "linear_apd",
     "long_reduc",
     "material",
+    "ratio",
     "pressed_reduc",
     "rectangular",
     "section",
