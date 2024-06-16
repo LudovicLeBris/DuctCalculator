@@ -61,7 +61,7 @@ export class RectangularDuctSetupComponent implements OnInit {
     private airflowCalculationService: AirflowCalculationService,
     private linearApdCalculationService: LinearApdCalculationService,
   ) {
-    this.air = new Air();
+    this.air = Air.getInstance();
     this.duct = new RectangularDuct(this.shape);
     this.airflow = new Airflow();
     this.linearApd = new LinearApd();
