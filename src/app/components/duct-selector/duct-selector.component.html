@@ -1,10 +1,18 @@
+<section class="shape-selector">
+  <mat-button-toggle-group [formControl]="shapeControl" (change)="toggleShape()">
+    <mat-button-toggle value="circular">
+      Circulaire <mat-icon svgIcon="circular"></mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="rectangular">
+      Rectangulaire <mat-icon svgIcon="rectangular"></mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</section>
+
 <section>
-  <article>
-    <!-- calculation results -->
-    Results
-  </article>
-  <article>
-    <!-- duct setup -->
-    <app-duct-setup></app-duct-setup>
-  </article>
+@if (shape.getValue() === 'circular') {
+  <app-circular-duct-setup></app-circular-duct-setup>
+} @else if (shape.getValue() === 'rectangular') {
+  <app-rectangular-duct-setup></app-rectangular-duct-setup>
+}
 </section>

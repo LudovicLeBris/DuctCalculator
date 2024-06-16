@@ -1,0 +1,90 @@
+<article class="result">
+  <ul class="result-list">
+    <!-- setup results -->
+  @switch (requestedProperty) {
+    @case ('diameter') {
+      <li class="result-list-item">
+        <div class="result-list-item-title">
+          <mat-icon svgIcon="diameter"></mat-icon>
+          <p>dimension</p>
+        </div>
+        <div>
+          <p>{{ calculatedDimension | number: '1.0-0' }} <span>mm</span></p>
+        </div>
+      </li>
+      <li class="result-list-item">
+        <div class="result-list-item-title">
+          <mat-icon svgIcon="{{ duct.diameter.icon }}"></mat-icon>
+          <p>{{ duct.diameter.displayName }} normalisé</p>
+        </div>
+        <div>
+          <p>{{duct.diameter.getValue()}} <span>{{ duct.diameter.unit }}</span></p>
+        </div>
+      </li>
+    }
+    @case ('flowrate') {
+      <li class="result-list-item">
+        <div class="result-list-item-title">
+          <mat-icon svgIcon="{{ airflow.flowrate.icon }}"></mat-icon>
+          <p>{{ airflow.flowrate.displayName }}</p>
+        </div>
+        <div>
+          <p>{{ airflow.flowrate.getValue() | number: '1.0-0' }} <span>{{ airflow.flowrate.unit }}</span></p>
+        </div>
+      </li>
+    }
+    @case ('flowspeed') {
+      <li class="result-list-item">
+        <div class="result-list-item-title">
+          <mat-icon svgIcon="{{ airflow.flowspeed.icon }}"></mat-icon>
+          <p>{{ airflow.flowspeed.displayName }}</p>
+        </div>
+        <div>
+          <p>{{ airflow.flowspeed.getValue() | number: '1.0-2' }} <span>{{ airflow.flowspeed.unit }}</span></p>
+        </div>
+      </li>
+    }
+  }
+    <li class="result-list-item">
+      <div class="result-list-item-title">
+        <mat-icon svgIcon="{{ linearApd.icon }}"></mat-icon>
+        <p>{{ linearApd.displayName }}</p>
+      </div>
+      <div>
+        <p>{{ linearApd.getValue() | number: '1.2-2' }} <span>{{ linearApd.unit }}</span></p>
+      </div>
+    </li>
+  </ul>
+</article>
+
+<article class="setup-wrapper">
+    @if (requestedProperty !== 'diameter') {
+      <div>
+        <app-diameter-slider class="slider" (onDiameterChange)="handleDiameterChange($event)"></app-diameter-slider>
+      </div>
+    }
+    @if (requestedProperty !== 'flowrate') {
+      <div>
+        <app-flowrate-slider class="slider" (onFlowrateChange)="handleFlowrateChange($event)"></app-flowrate-slider>
+      </div>
+    }
+    @if (requestedProperty !== 'flowspeed') {
+      <div>
+        <app-flowspeed-slider class="slider" (onFlowspeedChange)="handleFlowspeedChange($event)"></app-flowspeed-slider>
+      </div>
+    }
+</article>
+
+<article class="property-selector">
+  <mat-button-toggle-group [formControl]="requestedPropertyControl" (change)="toggleRequestedProperty()">
+    <mat-button-toggle value="flowrate">
+      Débit
+    </mat-button-toggle>
+    <mat-button-toggle value="diameter">
+      Diamètre
+    </mat-button-toggle>
+    <mat-button-toggle value="flowspeed">
+      Vitesse
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</article>

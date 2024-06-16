@@ -1,0 +1,44 @@
+.result {
+  display: flex;
+  justify-content: center;
+  margin: 0 16px;
+}
+
+.result-list {
+  width: 100%;
+  list-style: none;
+  padding-left: 0;
+}
+
+.result-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.result-list-item-title {
+  display: flex;
+  gap: 8px;
+}
+
+.mat-icon {
+  font-size: 32px;
+  height: 32px;
+  width: 32px;
+}
+
+.setup-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.slider {
+  width: 100%;
+}
+
+.property-selector {
+  display: flex;
+  justify-content: center;
+  padding: 0.5em 0;
+}

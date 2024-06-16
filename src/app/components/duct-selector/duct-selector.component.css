@@ -1,0 +1,11 @@
+.shape-selector {
+  display: flex;
+  justify-content: center;
+  padding: 0.5em 0;
+}
+
+.mat-icon {
+  font-size: 32px;
+  height: 32px;
+  width: 32px;
+}
