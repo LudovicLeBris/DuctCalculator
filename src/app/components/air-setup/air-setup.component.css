@@ -7,3 +7,27 @@ h2 {
 .slider {
   width: 100%;
 }
+
+@media (min-width: 640px) {
+  .air-setup {
+    margin:  0 12%;
+  }
+}
+
+@media (min-width: 768px) {
+  .air-setup {
+    margin:  0 18%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .air-setup {
+    margin:  0 26%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .air-setup {
+    margin:  0 34%;
+  }
+}
