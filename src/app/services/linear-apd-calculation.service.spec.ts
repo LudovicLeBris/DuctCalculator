@@ -12,6 +12,7 @@ import { inject } from '@angular/core';
 describe('LinearApdCalculationService', () => {
   let service: LinearApdCalculationService;
   let circularDuctCalculationService: CircularDuctCalculationService = new CircularDuctCalculationService;
+  let airflowCalculationService: AirflowCalculationService = new AirflowCalculationService;
 
   const mockedAir = new Air;
 
@@ -25,7 +26,7 @@ describe('LinearApdCalculationService', () => {
 
   const mockedAirFlow = new Airflow;
   mockedAirFlow.flowrate.setValue(2000);
-  mockedAirFlow.flowspeed.setValue(AirflowCalculationService.flowspeed(
+  mockedAirFlow.flowspeed.setValue(airflowCalculationService.flowspeed(
     mockedAirFlow.flowrate, mockedDuct.section
   ));
 
