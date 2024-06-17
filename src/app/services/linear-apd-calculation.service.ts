@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Flowspeed } from '../models/airflow/flowspeed.model';
 import { Air } from '../models/air/air.model';
 import { CircularDuct, RectangularDuct } from '../models/duct/duct.model';
 import { Airflow } from '../models/airflow/airflow.model';
