@@ -29,6 +29,6 @@ describe('CircularDuctCalculationService', () => {
   });
 
   it('#dimensionsBySection should return the right calculation for a 0.0779 section', () => {
-    expect(service.dimensionsBySection(mockedSection)).toBeCloseTo(314.937,3);
+    expect(service.dimensionsBySection(mockedSection.getValue())).toBeCloseTo(314.937,3);
   });
 });
