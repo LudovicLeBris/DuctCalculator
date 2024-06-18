@@ -1,0 +1,125 @@
+<article class="result">
+  <ul class="result-list">
+    @switch (requestedProperty) {
+      @case ('dimensions') {
+        @if (requestedDimension === 'ratio') {
+          <li class="result-list-item">
+            <div class="result-list-item-title">
+              <mat-icon svgIcon="width"></mat-icon>
+              <p>{{ duct.width.displayName }} / {{ duct.height.displayName }}</p>
+            </div>
+            <div>
+              <p>
+                {{ duct.width.getValue() | number: '1.0-0' }} <span>{{ duct.width.unit }}</span> /
+                {{ duct.height.getValue() | number: '1.0-0' }} <span>{{ duct.height.unit }}</span>
+              </p>
+            </div>
+          </li>
+        }
+        @else if (requestedDimension === 'knownSize') {
+          <li class="result-list-item">
+            <div class="result-list-item-title">
+              <mat-icon svgIcon="width"></mat-icon>
+              <p>Côté</p>
+            </div>
+            <div>
+              <p>
+                {{ calculatedSideSize | number: '1.0-0' }} <span>mm</span>
+              </p>
+            </div>
+          </li>
+        }
+      }
+      @case ('flowrate') {
+        <li class="result-list-item">
+          <div class="result-list-item-title">
+            <mat-icon svgIcon="{{ airflow.flowrate.icon }}"></mat-icon>
+            <p>{{ airflow.flowrate.displayName }}</p>
+          </div>
+          <div>
+            <p>{{ airflow.flowrate.getValue() | number: '1.0-0' }} <span>{{ airflow.flowrate.unit }}</span></p>
+          </div>
+        </li>
+      }
+      @case ('flowspeed') {
+        <li class="result-list-item">
+          <div class="result-list-item-title">
+            <mat-icon svgIcon="{{ airflow.flowspeed.icon }}"></mat-icon>
+            <p>{{ airflow.flowspeed.displayName }}</p>
+          </div>
+          <div>
+            <p>{{ airflow.flowspeed.getValue() | number: '1.0-2' }} <span>{{ airflow.flowspeed.unit }}</span></p>
+          </div>
+        </li>
+      }
+    }
+    <li class="result-list-item">
+      <div class="result-list-item-title">
+        <mat-icon svgIcon="{{ linearApd.icon }}"></mat-icon>
+        <p>{{ linearApd.displayName }}</p>
+      </div>
+      <div>
+        <p>{{ linearApd.getValue() | number: '1.2-2' }} <span>{{ linearApd.unit }}</span></p>
+      </div>
+    </li>
+  </ul>
+</article>
+
+<article class="setup-wrapper">
+  @if (requestedProperty !== 'dimensions') {
+    <div>
+      <app-width-slider class="slider" (onWidthChange)="handleWidthChange($event)"></app-width-slider>
+    </div>
+    <div>
+      <app-height-slider class="slider" (onHeightChange)="handleHeightChange($event)"></app-height-slider>
+    </div>
+  }
+  @if (requestedProperty !== 'flowrate') {
+    <div>
+      <app-flowrate-slider class="slider" (onFlowrateChange)="handleFlowrateChange($event)"></app-flowrate-slider>
+    </div>
+  }
+  @if (requestedProperty !== 'flowspeed') {
+    <div>
+      <app-flowspeed-slider class="slider" (onFlowspeedChange)="handleFlowspeedChange($event)"></app-flowspeed-slider>
+    </div>
+  }
+  @if (requestedProperty !== 'flowrate' && requestedProperty !== 'flowspeed') {
+    @if (requestedDimension === 'ratio') {
+      <div>
+        <app-ratio-slider class="slider" (onRatioChange)="handleRatioChange($event)"></app-ratio-slider>
+      </div>
+    } @else if (requestedDimension === 'knownSize') {
+      <div>
+        <app-knowside-slider class="slider" (onKnownSideChange)="handleKnownSideSizeChange($event)"></app-knowside-slider>
+      </div>
+    }
+  }
+</article>
+
+<article class="property-selector">
+  <mat-button-toggle-group [formControl]="requestedPropertyControl" (change)="toggleRequestedProperty()">
+    <mat-button-toggle value="flowrate">
+      Débit
+    </mat-button-toggle>
+    <mat-button-toggle value="dimensions">
+      Dimensions
+    </mat-button-toggle>
+    <mat-button-toggle value="flowspeed">
+      Vitesse
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</article>
+
+@if (requestedProperty === 'dimensions') {
+<article class="property-selector">
+  <mat-button-toggle-group [formControl]="requestedDimensionControl" (change)="toggleRequestedDimension()">
+    <mat-button-toggle value="ratio">
+      Ratio
+    </mat-button-toggle>
+    <mat-button-toggle value="knownSize">
+      Côté connu
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</article>
+}

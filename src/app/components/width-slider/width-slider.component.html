@@ -1,0 +1,25 @@
+<div class="header-wrapper">
+  <div class="header">
+    <mat-icon svgIcon="{{ width.icon }}"></mat-icon>
+    <p>{{width.displayName}}</p>
+  </div>
+  <div class="content-wrapper">
+    <p><span class="value">{{ widthControl.value | number: '1.0-0' }}</span> {{ width.unit }}</p>
+  </div>
+</div>
+<div class="slider-wrapper">
+  <button mat-mini-fab (click)="decreaseValue()">
+    <mat-icon>remove</mat-icon>
+  </button>
+  <mat-slider
+    max="3000"
+    min="10"
+    step="10"
+    (change)="handleChange()">
+    <input matSliderThumb [formControl]="widthControl" >
+  </mat-slider>
+  <button mat-mini-fab (click)="increaseValue()">
+    <mat-icon>add</mat-icon>
+  </button>
+
+</div>

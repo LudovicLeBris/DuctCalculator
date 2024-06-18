@@ -1,27 +1,24 @@
 # DuctCalculator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
+This web app provide tools for choosing aeraulic duct and calculating air pressure drop easily.
 
-## Development server
+## Technologies
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+It is a totally frontend application, write in Typescript with the framework Angular.
+I used the Google's Material UI kit to speed up the developpement.  
+**Angular version used : 18.02**.
 
-## Code scaffolding
+The development environnement is encapuslate in a Dockerfile. It provide an Angular installation from a Node Docker image.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## How to install
 
-## Build
+### With Docker
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Build the docker file with `docker build . -t duct-calculator`
+- Launch the Docker image and enter in it with `docker run -it $(id -u) -rm duct-calculator bash`
+- Create an Angular project `ng new DuctCalculator --skip-git=true --ssr=false --style=scss --interactive=false`
 
-## Running unit tests
+### Without Docker
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Angular 18 must be installed on yout machine
+- Run `npm install`

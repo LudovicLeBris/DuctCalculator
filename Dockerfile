@@ -44,9 +44,13 @@ RUN apt-get update && apt-get install -qqy --no-install-recommends \
     curl \
     zip \
     openssh-client \
+    chromium \
+    chromium-sandbox \
     && update-alternatives --install /usr/bin/python python /usr/bin/python3 1 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ENV CHROME_BIN=chromium
 
 ARG NG_CLI_VERSION=18.0.2
 LABEL angular-cli=$NG_CLI_VERSION node=$NODE_VERSION

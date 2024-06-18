@@ -1,0 +1,31 @@
+.slider-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+mat-slider {
+  width: 50%;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  gap: 4px
+}
+
+.header p {
+  text-transform: capitalize;
+}
+
+.value {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 0.8rem;
+}
