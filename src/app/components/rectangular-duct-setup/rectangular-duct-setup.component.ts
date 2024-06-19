@@ -62,7 +62,7 @@ export class RectangularDuctSetupComponent implements OnInit {
     private linearApdCalculationService: LinearApdCalculationService,
   ) {
     this.air = Air.getInstance();
-    this.duct = new RectangularDuct(this.shape);
+    this.duct = new RectangularDuct();
     this.airflow = new Airflow();
     this.linearApd = new LinearApd();
     this.requestedProperty = 'dimensions';
@@ -70,6 +70,7 @@ export class RectangularDuctSetupComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.duct = new RectangularDuct();
     this.duct.length.setValue(1);
     this.duct.width.setValue(199);
     this.duct.height.setValue(199);

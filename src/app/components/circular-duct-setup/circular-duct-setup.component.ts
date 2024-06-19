@@ -50,13 +50,14 @@ export class CircularDuctSetupComponent implements OnInit {
     private linearApdCalculationService : LinearApdCalculationService,
   ) {
     this.air = Air.getInstance();
-    this.duct = new CircularDuct(this.shape);
+    this.duct = new CircularDuct();
     this.airflow = new Airflow();
     this.linearApd = new LinearApd();
     this.requestedProperty = 'diameter';
   }
 
   ngOnInit(): void {
+    this.duct = new CircularDuct();
     this.duct.length.setValue(1);
     this.duct.diameter.setValue(315);
     this.airflow.flowrate.setValue(1000);
