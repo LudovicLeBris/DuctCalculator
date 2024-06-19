@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CircularDuctSetupComponent } from './circular-duct-setup.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('CircularDuctSetupComponent', () => {
   let component: CircularDuctSetupComponent;
@@ -8,7 +9,7 @@ describe('CircularDuctSetupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CircularDuctSetupComponent]
+      imports: [CircularDuctSetupComponent, MatIconTestingModule]
     })
     .compileComponents();
 

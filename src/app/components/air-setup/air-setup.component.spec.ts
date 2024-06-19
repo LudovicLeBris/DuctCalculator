@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AirSetupComponent } from './air-setup.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('AirSetupComponent', () => {
   let component: AirSetupComponent;
@@ -8,7 +9,7 @@ describe('AirSetupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AirSetupComponent]
+      imports: [AirSetupComponent, MatIconTestingModule]
     })
     .compileComponents();
 

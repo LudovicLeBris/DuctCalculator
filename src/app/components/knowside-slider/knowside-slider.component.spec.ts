@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { KnowsideSliderComponent } from './knowside-slider.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('KnowsideSliderComponent', () => {
   let component: KnowsideSliderComponent;
@@ -8,7 +9,7 @@ describe('KnowsideSliderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [KnowsideSliderComponent]
+      imports: [KnowsideSliderComponent, MatIconTestingModule]
     })
     .compileComponents();
 

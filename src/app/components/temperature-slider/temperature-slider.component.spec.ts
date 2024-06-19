@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemperatureSliderComponent } from './temperature-slider.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('TemperatureSliderComponent', () => {
   let component: TemperatureSliderComponent;
@@ -8,7 +9,7 @@ describe('TemperatureSliderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TemperatureSliderComponent]
+      imports: [TemperatureSliderComponent, MatIconTestingModule]
     })
     .compileComponents();
 

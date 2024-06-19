@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AltitudeSliderComponent } from './altitude-slider.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('AltitudeSliderComponent', () => {
   let component: AltitudeSliderComponent;
@@ -8,7 +9,7 @@ describe('AltitudeSliderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AltitudeSliderComponent]
+      imports: [AltitudeSliderComponent, MatIconTestingModule]
     })
     .compileComponents();
 

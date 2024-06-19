@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WidthSliderComponent } from './width-slider.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('WidthSliderComponent', () => {
   let component: WidthSliderComponent;
@@ -8,7 +9,7 @@ describe('WidthSliderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WidthSliderComponent]
+      imports: [WidthSliderComponent, MatIconTestingModule]
     })
     .compileComponents();
 

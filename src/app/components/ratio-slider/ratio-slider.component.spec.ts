@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RatioSliderComponent } from './ratio-slider.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('RatioSliderComponent', () => {
   let component: RatioSliderComponent;
@@ -8,7 +9,7 @@ describe('RatioSliderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RatioSliderComponent]
+      imports: [RatioSliderComponent, MatIconTestingModule]
     })
     .compileComponents();
 
