@@ -4,7 +4,6 @@
   justify-content: center;
   margin: 0 16px;
   margin-bottom: 16px;
-  margin: 0 16px;
 }
 
 .result-list {
@@ -38,6 +37,11 @@
   font-size: 32px;
   height: 32px;
   width: 32px;
+}
+
+.valid-button {
+  display: flex;
+  justify-content: center;
 }
 
 .setup-wrapper {

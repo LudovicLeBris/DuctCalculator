@@ -17,11 +17,13 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FlowrateSliderComponent } from '../flowrate-slider/flowrate-slider.component';
 import { FlowspeedSliderComponent } from '../flowspeed-slider/flowspeed-slider.component';
-import { Ratio } from '../../models/duct/ratio.model';
 import { RatioSliderComponent } from '../ratio-slider/ratio-slider.component';
 import { KnowsideSliderComponent } from '../knowside-slider/knowside-slider.component';
 import { WidthSliderComponent } from '../width-slider/width-slider.component';
 import { HeightSliderComponent } from '../height-slider/height-slider.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { SelectDuctOverviewComponent } from '../select-duct-overview/select-duct-overview.component';
 
 @Component({
   selector: 'app-rectangular-duct-setup',
@@ -29,6 +31,7 @@ import { HeightSliderComponent } from '../height-slider/height-slider.component'
   imports: [
     CommonModule,
     MatIconModule,
+    MatButtonModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
     FlowrateSliderComponent,
@@ -37,6 +40,7 @@ import { HeightSliderComponent } from '../height-slider/height-slider.component'
     HeightSliderComponent,
     RatioSliderComponent,
     KnowsideSliderComponent,
+    MatBottomSheetModule,
   ],
   templateUrl: './rectangular-duct-setup.component.html',
   styleUrl: './rectangular-duct-setup.component.css'
@@ -60,6 +64,7 @@ export class RectangularDuctSetupComponent implements OnInit {
     private rectangularDuctCalculationService : RectangularDuctCalculationService,
     private airflowCalculationService: AirflowCalculationService,
     private linearApdCalculationService: LinearApdCalculationService,
+    private _bottomSheet : MatBottomSheet,
   ) {
     this.air = Air.getInstance();
     this.duct = new RectangularDuct();
@@ -217,5 +222,9 @@ export class RectangularDuctSetupComponent implements OnInit {
 
   calculateLinearApd(): void {
     this.linearApd.setValue(this.linearApdCalculationService.getlinearApd(this.air, this.duct, this.airflow));
+  }
+
+  openDuctOverviewBottomSheet() {
+    this._bottomSheet.open(SelectDuctOverviewComponent, {data: {'duct': this.duct, 'airflow': this.airflow}});
   }
 }

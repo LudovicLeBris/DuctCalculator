@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, signal } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CircularDuct } from '../../models/duct/duct.model';
 import { Shape } from '../../models/duct/shape.model';
 import { Air } from '../../models/air/air.model';
@@ -17,6 +17,9 @@ import { FlowspeedSliderComponent } from '../flowspeed-slider/flowspeed-slider.c
 import { DiameterSliderComponent } from '../diameter-slider/diameter-slider.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { SelectDuctOverviewComponent } from '../select-duct-overview/select-duct-overview.component';
 
 @Component({
   selector: 'app-circular-duct-setup',
@@ -24,11 +27,13 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     MatIconModule,
+    MatButtonModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
     DiameterSliderComponent,
     FlowrateSliderComponent,
     FlowspeedSliderComponent,
+    MatBottomSheetModule
   ],
   templateUrl: './circular-duct-setup.component.html',
   styleUrl: './circular-duct-setup.component.css'
@@ -48,6 +53,7 @@ export class CircularDuctSetupComponent implements OnInit {
     private circularDuctCalculationService : CircularDuctCalculationService,
     private airflowCalculationService : AirflowCalculationService,
     private linearApdCalculationService : LinearApdCalculationService,
+    private _bottomSheet: MatBottomSheet,
   ) {
     this.air = Air.getInstance();
     this.duct = new CircularDuct();
@@ -143,5 +149,9 @@ export class CircularDuctSetupComponent implements OnInit {
 
   public calculateLinearApd(): void {
     this.linearApd.setValue(this.linearApdCalculationService.getlinearApd(this.air, this.duct, this.airflow));
+  }
+
+  openDuctOverviewBottomSheet() {
+    this._bottomSheet.open(SelectDuctOverviewComponent, {data: {'duct': this.duct, 'airflow': this.airflow}});
   }
 }
