@@ -23,6 +23,8 @@ import { WidthSliderComponent } from '../width-slider/width-slider.component';
 import { HeightSliderComponent } from '../height-slider/height-slider.component';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { StorageService } from '../../services/storage.service';
+import { Apd } from '../../models/apd/apd.model';
 
 @Component({
   selector: 'app-rectangular-duct-setup',
@@ -48,6 +50,7 @@ export class RectangularDuctSetupComponent implements OnInit {
   air: Air;
   duct: RectangularDuct;
   airflow: Airflow;
+  apd: Apd;
   linearApd: LinearApd;
   knownSideSize: number = 0;
   calculatedSideSize: number = 0;
@@ -63,10 +66,12 @@ export class RectangularDuctSetupComponent implements OnInit {
     private airflowCalculationService: AirflowCalculationService,
     private linearApdCalculationService: LinearApdCalculationService,
     private router: Router,
+    private storageService: StorageService,
   ) {
     this.air = Air.getInstance();
     this.duct = new RectangularDuct();
     this.airflow = new Airflow();
+    this.apd = new Apd;
     this.linearApd = new LinearApd();
     this.requestedProperty = 'dimensions';
     this.requestedDimension = 'ratio';
@@ -220,9 +225,13 @@ export class RectangularDuctSetupComponent implements OnInit {
 
   calculateLinearApd(): void {
     this.linearApd.setValue(this.linearApdCalculationService.getlinearApd(this.air, this.duct, this.airflow));
+    this.apd.linearApd = this.linearApd;
   }
 
   public goToApdSelector(): void {
+    this.storageService.setDuct(this.duct);
+    this.storageService.setAirflow(this.airflow);
+    this.storageService.setApd(this.apd);
     this.router.navigate(['apd-selector']);
   }
 }
