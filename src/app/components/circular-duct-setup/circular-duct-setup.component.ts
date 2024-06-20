@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { StorageService } from '../../services/storage.service';
 import { Apd } from '../../models/apd/apd.model';
+import { AirSetupService } from '../../services/air-setup.service';
 
 @Component({
   selector: 'app-circular-duct-setup',
@@ -51,12 +52,14 @@ export class CircularDuctSetupComponent implements OnInit {
   requestedProperty: 'diameter' | 'flowrate' | 'flowspeed';
 
   constructor (
+    private airSetupService: AirSetupService,
     private circularDuctCalculationService : CircularDuctCalculationService,
     private airflowCalculationService : AirflowCalculationService,
     private linearApdCalculationService : LinearApdCalculationService,
     private router: Router,
     private storageService: StorageService,
   ) {
+    this.airSetupService.getAir().subscribe(() => {this.calculateLinearApd()});
     this.air = Air.getInstance();
     this.duct = new CircularDuct();
     this.airflow = new Airflow();

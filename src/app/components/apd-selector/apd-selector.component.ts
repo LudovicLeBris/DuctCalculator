@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { Duct } from '../../models/duct/duct.model';
 import { StorageService } from '../../services/storage.service';
 import { Airflow } from '../../models/airflow/airflow.model';
@@ -10,6 +10,8 @@ import { LengthSliderComponent } from '../length-slider/length-slider.component'
 import { Length } from '../../models/duct/length.model';
 import { LinearApdCalculationService } from '../../services/linear-apd-calculation.service';
 import { Air } from '../../models/air/air.model';
+import { AirSetupService } from '../../services/air-setup.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-apd-selector',
@@ -30,10 +32,12 @@ export class ApdSelectorComponent {
   apd = new Apd;
 
   constructor (
+    private airSetupService: AirSetupService,
     private storageService: StorageService,
     private linearApdCalculationService: LinearApdCalculationService,
   )
   {
+    this.airSetupService.getAir().subscribe(() => {this.calculateLinearApd();})
     this.duct = this.storageService.duct;
     this.airflow = this.storageService.airflow;
     this.apd = this.storageService.apd;
@@ -41,6 +45,10 @@ export class ApdSelectorComponent {
 
   handleLengthChange($event: Length): void {
     this.duct.length = $event;
+    this.calculateLinearApd();
+  }
+
+  calculateLinearApd(): void {
     const linearApd = this.linearApdCalculationService.getlinearApd(this.air, this.duct, this.airflow);
     this.apd.linearApd.setValue(linearApd);
   }

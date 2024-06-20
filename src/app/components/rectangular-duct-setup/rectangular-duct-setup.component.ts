@@ -25,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { StorageService } from '../../services/storage.service';
 import { Apd } from '../../models/apd/apd.model';
+import { AirSetupService } from '../../services/air-setup.service';
 
 @Component({
   selector: 'app-rectangular-duct-setup',
@@ -62,12 +63,14 @@ export class RectangularDuctSetupComponent implements OnInit {
   requestedDimension: 'ratio' | 'knownSize';
 
   constructor (
+    private airSetupService: AirSetupService,
     private rectangularDuctCalculationService : RectangularDuctCalculationService,
     private airflowCalculationService: AirflowCalculationService,
     private linearApdCalculationService: LinearApdCalculationService,
     private router: Router,
     private storageService: StorageService,
   ) {
+    airSetupService.getAir().subscribe(() => {this.calculateLinearApd()});
     this.air = Air.getInstance();
     this.duct = new RectangularDuct();
     this.airflow = new Airflow();
