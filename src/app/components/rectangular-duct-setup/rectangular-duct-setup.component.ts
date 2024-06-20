@@ -70,7 +70,6 @@ export class RectangularDuctSetupComponent implements OnInit {
     private router: Router,
     private storageService: StorageService,
   ) {
-    airSetupService.getAir().subscribe(() => {this.calculateLinearApd()});
     this.air = Air.getInstance();
     this.duct = new RectangularDuct();
     this.airflow = new Airflow();
@@ -93,6 +92,7 @@ export class RectangularDuctSetupComponent implements OnInit {
     this.handleFlowrateChange(this.airflow.flowrate);
     this.handleFlowspeedChange(this.airflow.flowspeed);
     this.calculateLinearApd();
+    this.airSetupService.getAir().subscribe(() => {this.calculateLinearApd()});
   }
 
   toggleRequestedProperty(): void {

@@ -59,7 +59,6 @@ export class CircularDuctSetupComponent implements OnInit {
     private router: Router,
     private storageService: StorageService,
   ) {
-    this.airSetupService.getAir().subscribe(() => {this.calculateLinearApd()});
     this.air = Air.getInstance();
     this.duct = new CircularDuct();
     this.airflow = new Airflow();
@@ -77,6 +76,7 @@ export class CircularDuctSetupComponent implements OnInit {
     this.handleFlowrateChange(this.airflow.flowrate);
     this.handleFlowspeedChange(this.airflow.flowspeed);
     this.calculateLinearApd();
+    this.airSetupService.getAir().subscribe(() => {this.calculateLinearApd()});
   }
 
   toggleRequestedProperty(): void {
