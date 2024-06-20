@@ -19,7 +19,7 @@ interface IDuct {
   ration?: Ratio;
 }
 
-export abstract class Duct implements IDuct {
+export class Duct implements IDuct {
   public shape: Shape;
   public section: Section;
   public material: Material;
