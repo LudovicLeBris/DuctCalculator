@@ -19,6 +19,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { StorageService } from '../../services/storage.service';
+import { Apd } from '../../models/apd/apd.model';
 
 @Component({
   selector: 'app-circular-duct-setup',
@@ -41,6 +43,7 @@ export class CircularDuctSetupComponent implements OnInit {
   air: Air;
   duct: CircularDuct;
   airflow: Airflow;
+  apd: Apd;
   linearApd: LinearApd;
   calculatedDimension: number = 0;
 
@@ -52,10 +55,12 @@ export class CircularDuctSetupComponent implements OnInit {
     private airflowCalculationService : AirflowCalculationService,
     private linearApdCalculationService : LinearApdCalculationService,
     private router: Router,
+    private storageService: StorageService,
   ) {
     this.air = Air.getInstance();
     this.duct = new CircularDuct();
     this.airflow = new Airflow();
+    this.apd = new Apd;
     this.linearApd = new LinearApd();
     this.requestedProperty = 'diameter';
   }
@@ -147,9 +152,13 @@ export class CircularDuctSetupComponent implements OnInit {
 
   public calculateLinearApd(): void {
     this.linearApd.setValue(this.linearApdCalculationService.getlinearApd(this.air, this.duct, this.airflow));
+    this.apd.linearApd = this.linearApd;
   }
 
   public goToApdSelector(): void {
+    this.storageService.setDuct(this.duct);
+    this.storageService.setAirflow(this.airflow);
+    this.storageService.setApd(this.apd);
     this.router.navigate(['apd-selector']);
   }
 }

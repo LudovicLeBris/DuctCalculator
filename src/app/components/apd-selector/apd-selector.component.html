@@ -1,1 +1,22 @@
-<p>apd-selector works!</p>
+<section class="linear-apd">
+  <article class="linear-apd-result">
+    <div class="linear-apd-result-title">
+      <mat-icon svgIcon="linear_apd"></mat-icon>
+      <p>PdC linéaire</p>
+    </div>
+    <div>
+      <p>{{ apd.linearApd.getValue() | number :'1.2-2' }} {{ apd.linearApd.unit }}</p>
+    </div>
+  </article>
+  <article class="linear-apd-setup">
+    <div>
+      <app-length-slider class="slider" (onLengthChange)="handleLengthChange($event)"></app-length-slider>
+    </div>
+  </article>
+</section>
+
+<mat-divider></mat-divider>
+
+<section class="singular-apd">
+
+</section>

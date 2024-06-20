@@ -1,0 +1,37 @@
+p {
+  margin-bottom: 0;
+}
+
+.linear-apd {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 16px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.linear-apd-result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.linear-apd-result-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.linear-apd-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.slider {
+  width: 100%;
+}
