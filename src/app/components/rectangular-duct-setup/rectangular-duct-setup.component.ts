@@ -22,8 +22,7 @@ import { KnowsideSliderComponent } from '../knowside-slider/knowside-slider.comp
 import { WidthSliderComponent } from '../width-slider/width-slider.component';
 import { HeightSliderComponent } from '../height-slider/height-slider.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { SelectDuctOverviewComponent } from '../select-duct-overview/select-duct-overview.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rectangular-duct-setup',
@@ -40,7 +39,6 @@ import { SelectDuctOverviewComponent } from '../select-duct-overview/select-duct
     HeightSliderComponent,
     RatioSliderComponent,
     KnowsideSliderComponent,
-    MatBottomSheetModule,
   ],
   templateUrl: './rectangular-duct-setup.component.html',
   styleUrl: './rectangular-duct-setup.component.css'
@@ -64,7 +62,7 @@ export class RectangularDuctSetupComponent implements OnInit {
     private rectangularDuctCalculationService : RectangularDuctCalculationService,
     private airflowCalculationService: AirflowCalculationService,
     private linearApdCalculationService: LinearApdCalculationService,
-    private _bottomSheet : MatBottomSheet,
+    private router: Router,
   ) {
     this.air = Air.getInstance();
     this.duct = new RectangularDuct();
@@ -224,7 +222,7 @@ export class RectangularDuctSetupComponent implements OnInit {
     this.linearApd.setValue(this.linearApdCalculationService.getlinearApd(this.air, this.duct, this.airflow));
   }
 
-  openDuctOverviewBottomSheet() {
-    this._bottomSheet.open(SelectDuctOverviewComponent, {data: {'duct': this.duct, 'airflow': this.airflow}});
+  public goToApdSelector(): void {
+    this.router.navigate(['apd-selector']);
   }
 }
