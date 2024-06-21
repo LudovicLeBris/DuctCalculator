@@ -41,7 +41,7 @@ export class LengthSliderComponent {
   }
 
   decreaseValue() {
-    if (this.lengthControl.value! > 10) {
+    if (this.lengthControl.value! > 1) {
       this.lengthControl.setValue(this.lengthControl.value! - 1);
       this.handleChange()
     }
