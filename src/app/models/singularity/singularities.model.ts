@@ -11,6 +11,10 @@ export class Singularities {
     return this.singularities;
   }
 
+  public getSingularityByName(singularityName: string): Singularity | undefined {
+    return this.singularities.find(singularity => singularity.getName() === singularityName);
+  }
+
   public addSingularity(singularity: Singularity):void {
     this.singularities.push(singularity);
   }

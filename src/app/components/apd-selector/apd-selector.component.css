@@ -2,24 +2,26 @@ p {
   margin-bottom: 0;
 }
 
-.linear-apd {
+mat-divider {
+  margin: 8px 16px;
+}
+
+.apd-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 8px;
   margin: 0 16px;
-  margin-top: 8px;
-  margin-bottom: 16px;
 }
 
-.linear-apd-result {
+.apd-result {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.linear-apd-result-title {
+.apd-result-title {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -29,9 +31,39 @@ p {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 16px 0;
+  margin: 4px 0;
 }
 
 .slider {
   width: 100%;
 }
+
+.singularity-selection {
+  width: 100%;
+}
+
+mat-panel-title mat-icon {
+  padding-right: 8px;
+}
+
+.singularity-setup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.singularity-setup  p, button {
+  margin-bottom: 20px;
+}
+
+.singularity-setup__quantity {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.singularity-setup__quantity__input {
+  width: 64px;
+}
+
