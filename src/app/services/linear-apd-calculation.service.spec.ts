@@ -3,11 +3,10 @@ import { TestBed } from '@angular/core/testing';
 import { LinearApdCalculationService } from './linear-apd-calculation.service';
 import { Air } from '../models/air/air.model';
 import { Airflow } from '../models/airflow/airflow.model';
-import { CircularDuct, DuctFactory, RectangularDuct } from '../models/duct/duct.model';
+import { CircularDuct } from '../models/duct/duct.model';
 import { Shape } from '../models/duct/shape.model';
 import { CircularDuctCalculationService } from './circular-duct-calculation.service';
 import { AirflowCalculationService } from './airflow-calculation.service';
-import { inject } from '@angular/core';
 
 describe('LinearApdCalculationService', () => {
   let service: LinearApdCalculationService;

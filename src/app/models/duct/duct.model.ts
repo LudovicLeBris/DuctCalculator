@@ -13,17 +13,25 @@ interface IDuct {
   material: Material;
   equivalentDiameter: number;
   length: Length;
+  diameter?: Diameter;
+  width?: Width;
+  height?: Height;
+  ration?: Ratio;
 }
 
-abstract class Duct implements IDuct {
+export class Duct implements IDuct {
   public shape: Shape;
   public section: Section;
   public material: Material;
   public equivalentDiameter: number;
   public length: Length;
+  public diameter?: Diameter;
+  public width?: Width;
+  public height?: Height;
+  public ratio?: Ratio;
 
-  constructor (shape: Shape) {
-    this.shape = shape;
+  constructor () {
+    this.shape = new Shape;
     this.material = new Material;
     this.section = new Section;
     this.equivalentDiameter = 0;
@@ -34,11 +42,12 @@ abstract class Duct implements IDuct {
 export class CircularDuct extends Duct {
   override readonly shape: Shape;
 
-  public diameter: Diameter;
+  public override diameter: Diameter;
 
-  constructor (shape: Shape) {
-    super(shape);
-    this.shape = shape;
+  constructor () {
+    super();
+    this.shape = new Shape;
+    this.shape.setValue('circular');
     this.diameter = new Diameter;
   }
 }
@@ -46,31 +55,17 @@ export class CircularDuct extends Duct {
 export class RectangularDuct extends Duct  {
   override readonly shape: Shape;
 
-  public width: Width;
-  public height: Height;
-  public ratio: Ratio;
+  public override width: Width;
+  public override height: Height;
+  public override ratio: Ratio;
 
-  constructor(shape: Shape) {
-    super(shape);
-    this.shape = shape;
+  constructor() {
+    super();
+    this.shape = new Shape;
+    this.shape.setValue('rectangular');
     this.width = new Width;
     this.height = new Height;
     this.ratio = new Ratio;
   }
 }
 
-export class DuctFactory {
-  static createDuct(shape: Shape) {
-    switch (shape.getValue()) {
-      case 'circular':
-        return new CircularDuct(shape);
-        break;
-      case 'rectangular':
-        return  new RectangularDuct(shape);
-        break;
-      default:
-        return new CircularDuct(shape);
-        break;
-    }
-  }
-}

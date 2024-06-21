@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Air } from '../models/air/air.model';
-import { CircularDuct, RectangularDuct } from '../models/duct/duct.model';
+import { Duct } from '../models/duct/duct.model';
 import { Airflow } from '../models/airflow/airflow.model';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class LinearApdCalculationService {
     return (flowspeed * (equivalentDiameter * 10 ** -3)) / viscosity;
   }
 
-  public getlinearApd(air: Air, duct: CircularDuct | RectangularDuct, airflow: Airflow) {
+  public getlinearApd(air: Air, duct: Duct, airflow: Airflow) {
     let linearApd = 0;
 
     const length = duct.length.getValue();

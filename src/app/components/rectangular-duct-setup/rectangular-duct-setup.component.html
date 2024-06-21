@@ -59,10 +59,16 @@
         <p>{{ linearApd.displayName }}</p>
       </div>
       <div>
-        <p>{{ linearApd.getValue() | number: '1.2-2' }} <span>{{ linearApd.unit }}</span></p>
+        <p>{{ linearApd.getValue() | number: '1.2-2' }} <span>{{ linearApd.unit }}/m</span></p>
       </div>
     </li>
   </ul>
+  <div class='valid-button'>
+    <button mat-flat-button (click)="goToApdSelector()">
+      <mat-icon>check</mat-icon>
+      Validez ces caractéristiques
+    </button>
+  </div>
 </article>
 
 <article class="setup-wrapper">

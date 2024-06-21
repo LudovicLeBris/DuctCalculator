@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DiameterSliderComponent } from './diameter-slider.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('DiameterSliderComponent', () => {
   let component: DiameterSliderComponent;
@@ -8,7 +9,7 @@ describe('DiameterSliderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DiameterSliderComponent]
+      imports: [DiameterSliderComponent, MatIconTestingModule]
     })
     .compileComponents();
 

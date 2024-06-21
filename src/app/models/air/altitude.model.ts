@@ -2,8 +2,8 @@ import { TechnicalProperty } from "../technical-property.model";
 
 export class Altitude extends TechnicalProperty {
   override readonly name = 'altitude';
-  override readonly displayName = 'altitude';
-  override readonly unit = 'm (au dessus du niveau de la mer)';
+  override readonly displayName = 'altitude MSL';
+  override readonly unit = 'm';
   override readonly icon: string = 'altitude';
 
   declare protected value: number;

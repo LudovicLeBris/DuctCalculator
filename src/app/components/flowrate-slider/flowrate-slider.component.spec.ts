@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FlowrateSliderComponent } from './flowrate-slider.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('FlowrateSliderComponent', () => {
   let component: FlowrateSliderComponent;
@@ -8,7 +9,7 @@ describe('FlowrateSliderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FlowrateSliderComponent]
+      imports: [FlowrateSliderComponent, MatIconTestingModule]
     })
     .compileComponents();
 

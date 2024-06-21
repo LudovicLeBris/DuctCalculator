@@ -17,11 +17,15 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FlowrateSliderComponent } from '../flowrate-slider/flowrate-slider.component';
 import { FlowspeedSliderComponent } from '../flowspeed-slider/flowspeed-slider.component';
-import { Ratio } from '../../models/duct/ratio.model';
 import { RatioSliderComponent } from '../ratio-slider/ratio-slider.component';
 import { KnowsideSliderComponent } from '../knowside-slider/knowside-slider.component';
 import { WidthSliderComponent } from '../width-slider/width-slider.component';
 import { HeightSliderComponent } from '../height-slider/height-slider.component';
+import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
+import { StorageService } from '../../services/storage.service';
+import { Apd } from '../../models/apd/apd.model';
+import { AirSetupService } from '../../services/air-setup.service';
 
 @Component({
   selector: 'app-rectangular-duct-setup',
@@ -29,6 +33,7 @@ import { HeightSliderComponent } from '../height-slider/height-slider.component'
   imports: [
     CommonModule,
     MatIconModule,
+    MatButtonModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
     FlowrateSliderComponent,
@@ -46,6 +51,7 @@ export class RectangularDuctSetupComponent implements OnInit {
   air: Air;
   duct: RectangularDuct;
   airflow: Airflow;
+  apd: Apd;
   linearApd: LinearApd;
   knownSideSize: number = 0;
   calculatedSideSize: number = 0;
@@ -57,19 +63,24 @@ export class RectangularDuctSetupComponent implements OnInit {
   requestedDimension: 'ratio' | 'knownSize';
 
   constructor (
+    private airSetupService: AirSetupService,
     private rectangularDuctCalculationService : RectangularDuctCalculationService,
     private airflowCalculationService: AirflowCalculationService,
     private linearApdCalculationService: LinearApdCalculationService,
+    private router: Router,
+    private storageService: StorageService,
   ) {
     this.air = Air.getInstance();
-    this.duct = new RectangularDuct(this.shape);
+    this.duct = new RectangularDuct();
     this.airflow = new Airflow();
+    this.apd = new Apd;
     this.linearApd = new LinearApd();
     this.requestedProperty = 'dimensions';
     this.requestedDimension = 'ratio';
   }
 
   ngOnInit(): void {
+    this.duct = new RectangularDuct();
     this.duct.length.setValue(1);
     this.duct.width.setValue(199);
     this.duct.height.setValue(199);
@@ -81,6 +92,7 @@ export class RectangularDuctSetupComponent implements OnInit {
     this.handleFlowrateChange(this.airflow.flowrate);
     this.handleFlowspeedChange(this.airflow.flowspeed);
     this.calculateLinearApd();
+    this.airSetupService.getAir().subscribe(() => {this.calculateLinearApd()});
   }
 
   toggleRequestedProperty(): void {
@@ -216,5 +228,13 @@ export class RectangularDuctSetupComponent implements OnInit {
 
   calculateLinearApd(): void {
     this.linearApd.setValue(this.linearApdCalculationService.getlinearApd(this.air, this.duct, this.airflow));
+    this.apd.linearApd = this.linearApd;
+  }
+
+  public goToApdSelector(): void {
+    this.storageService.setDuct(this.duct);
+    this.storageService.setAirflow(this.airflow);
+    this.storageService.setApd(this.apd);
+    this.router.navigate(['apd-selector']);
   }
 }

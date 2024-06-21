@@ -5,6 +5,8 @@ import { IconRegisterService } from './services/icon-register.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { AirSetupComponent } from './components/air-setup/air-setup.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatBottomSheetModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -24,13 +27,14 @@ export class AppComponent {
   constructor (
     private iconRegister: IconRegisterService,
     private router: Router,
+    private _airSetupBottomSheet: MatBottomSheet,
   ) {}
 
   goToHome() {
     this.router.navigate(['']);
   }
 
-  goToAirSetup() {
-    this.router.navigate(['air-setup']);
+  openAirSetupBottomSheet(): void {
+    this._airSetupBottomSheet.open(AirSetupComponent);
   }
 }

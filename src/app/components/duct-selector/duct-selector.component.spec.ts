@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DuctSelectorComponent } from './duct-selector.component';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('DuctSelectorComponent', () => {
   let component: DuctSelectorComponent;
@@ -8,7 +9,7 @@ describe('DuctSelectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DuctSelectorComponent]
+      imports: [DuctSelectorComponent, MatIconTestingModule]
     })
     .compileComponents();
 
