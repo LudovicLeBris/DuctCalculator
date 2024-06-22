@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Duct } from '../../models/duct/duct.model';
 import { StorageService } from '../../services/storage.service';
 import { Airflow } from '../../models/airflow/airflow.model';
@@ -11,17 +11,15 @@ import { Length } from '../../models/duct/length.model';
 import { LinearApdCalculationService } from '../../services/linear-apd-calculation.service';
 import { Air } from '../../models/air/air.model';
 import { AirSetupService } from '../../services/air-setup.service';
-import { Observable } from 'rxjs';
 import { SingularitiesValues, Singularity } from '../../models/singularity/singularity.model';
 import { SingularityFactory } from '../../models/singularity/singularity-factory';
 import { Singularities } from '../../models/singularity/singularities.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SingularApdService } from '../../services/singular-apd.service';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-apd-selector',
@@ -33,10 +31,9 @@ import { MatButtonModule } from '@angular/material/button';
     LengthSliderComponent,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatSelectModule,
     MatInputModule,
-    MatExpansionModule,
     MatButtonModule,
+    MatListModule
   ],
   templateUrl: './apd-selector.component.html',
   styleUrl: './apd-selector.component.css'
@@ -106,26 +103,6 @@ export class ApdSelectorComponent implements OnInit {
     }
   }
 
-  handleSingularitiesListChange(): void {
-    if (!this.singularitiesControl.value) {
-      this.singularities.getSingularities().forEach(singularity => {
-        singularity.setQuantity(0);
-      });
-      return;
-    }
-    this.singularities.getSingularities().forEach(singularity => {
-      const isInSelectedList: boolean = (this.singularitiesControl.value as string[]).includes(singularity.getName());
-      if (!isInSelectedList) {
-        singularity.setQuantity(0);
-      } else if (isInSelectedList && singularity.getQuantity() === 0) {
-        singularity.setQuantity(1);
-      }
-    });
-    // console.log(this.singularities.getSingularities());
-    this.calculateSingularApd();
-    this.calculateTotalApd();
-  }
-
   handleAddSingularityQuantity(singularity: Singularity) {
     singularity.setQuantity(singularity.getQuantity() + 1);
     this.calculateSingularApd();
@@ -133,17 +110,13 @@ export class ApdSelectorComponent implements OnInit {
   }
 
   handleRemoveSingularityQuantity(singularity: Singularity) {
-    if (singularity.getQuantity() > 1) {
+    if (singularity.getQuantity() > 0) {
       singularity.setQuantity(singularity.getQuantity() - 1);
       this.calculateSingularApd();
       this.calculateTotalApd();
     } else {
       return;
     }
-  }
-
-  selectedSingularity(singularityName: string): Singularity | undefined {
-    return this.singularities.getSingularityByName(singularityName);
   }
 
   calculateSingularApdByQuantity(singularity: Singularity): number {
