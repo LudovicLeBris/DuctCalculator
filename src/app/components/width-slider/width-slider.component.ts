@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { Width } from '../../models/duct/width.model';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-width-slider',
@@ -22,10 +23,13 @@ import { Width } from '../../models/duct/width.model';
 export class WidthSliderComponent {
   width: Width;
   onWidthChange = output<Width>();
-  widthControl = new FormControl(200);
+  widthControl: FormControl;
 
-  constructor () {
-    this.width = new Width();
+  constructor (
+    private storageService: StorageService,
+  ) {
+    this.width = this.storageService.duct.width!;
+    this.widthControl = new FormControl(this.width.getValue());
   }
 
   handleChange(): void {

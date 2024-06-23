@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { Flowspeed } from '../../models/airflow/flowspeed.model';
 import { CommonModule } from '@angular/common';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-flowspeed-slider',
@@ -22,10 +23,13 @@ import { CommonModule } from '@angular/common';
 export class FlowspeedSliderComponent {
   flowspeed: Flowspeed;
   onFlowspeedChange = output<Flowspeed>();
-  flowspeedControl = new FormControl(7);
+  flowspeedControl: FormControl;
 
-  constructor () {
-    this.flowspeed = new Flowspeed;
+  constructor (
+    private storageService: StorageService,
+  ) {
+    this.flowspeed = this.storageService.airflow.flowspeed;
+    this.flowspeedControl = new FormControl(this.flowspeed.getValue());
   }
 
   handleChange(): void {

@@ -4,7 +4,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
-import { Diameter, normalizedDiameters } from '../../models/duct/diameter.model';
+import { Diameter, DiameterValue, normalizedDiameters } from '../../models/duct/diameter.model';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-diameter-slider',
@@ -24,11 +25,14 @@ export class DiameterSliderComponent {
   diameterIndex: number = 4;
   diameters = normalizedDiameters;
   onDiameterChange = output<Diameter>();
-  diameterControl = new FormControl(4);
+  diameterControl = new FormControl(3);
   max: number = this.diameters.length - 1;
 
-  constructor () {
-    this.diameter = new Diameter;
+  constructor (
+    private storageService: StorageService,
+  ) {
+    this.diameter = this.storageService.duct.diameter!;
+    this.diameterControl.setValue(this.findDiameterIndex(this.diameter));
   }
 
   handleChange(): void {
@@ -48,5 +52,10 @@ export class DiameterSliderComponent {
       this.diameterControl.setValue(this.diameterControl.value! - 1);
       this.handleChange()
     }
+  }
+
+  findDiameterIndex(diameter: Diameter) {
+    const index = this.diameters.findIndex(diameterSeeked => diameterSeeked === diameter.getValue());
+    return index;
   }
 }
