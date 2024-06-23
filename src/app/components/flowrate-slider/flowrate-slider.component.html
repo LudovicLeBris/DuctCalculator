@@ -4,7 +4,7 @@
     <p>{{flowrate.displayName}}</p>
   </div>
   <div class="content-wrapper">
-    <p><span class="value">{{ flowrateControl.value }}</span> {{ flowrate.unit }}</p>
+    <p><span class="value">{{ flowrateControl.value | number: '1.0-0' }}</span> {{ flowrate.unit }}</p>
   </div>
 </div>
 <div class="slider-wrapper">

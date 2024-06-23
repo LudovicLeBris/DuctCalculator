@@ -4,6 +4,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-knowside-slider',
@@ -21,10 +22,13 @@ import { MatSliderModule } from '@angular/material/slider';
 export class KnowsideSliderComponent {
   knownSide: number;
   onKnownSideChange = output<number>();
-  knownSideControl = new FormControl(200);
+  knownSideControl: FormControl;
 
-  constructor () {
-    this.knownSide = 200;
+  constructor (
+    private storageService: StorageService,
+  ) {
+    this.knownSide = this.storageService.duct.height!.getValue();
+    this.knownSideControl = new FormControl(this.knownSide);
   }
 
   handleChange(): void {

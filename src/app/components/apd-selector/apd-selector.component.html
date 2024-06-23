@@ -1,78 +1,67 @@
-<section class="apd-section">
-  <article class="apd-result">
-    <div class="apd-result-title">
-      <mat-icon svgIcon="total_apd"></mat-icon>
-      <p>Pdc totales</p>
-    </div>
-    <div>
-      <p>{{ totalApd | number: '1.2-2' }} Pa</p>
-    </div>
-  </article>
-</section>
-
-<mat-divider></mat-divider>
-
-<section class="apd-section">
-  <article class="apd-result">
-    <div class="apd-result-title">
-      <mat-icon svgIcon="linear_apd"></mat-icon>
-      <p>PdC linéaires</p>
-    </div>
-    <div>
-      <p>{{ apd.linearApd.getValue() | number :'1.2-2' }} {{ apd.linearApd.unit }}</p>
-    </div>
-  </article>
-  <article class="linear-apd-setup">
-    <div>
-      <app-length-slider class="slider" (onLengthChange)="handleLengthChange($event)"></app-length-slider>
-    </div>
-  </article>
-</section>
-
-<mat-divider></mat-divider>
-
-<section class="apd-section">
-  <article class="apd-result">
-    <div class="apd-result-title">
-      <mat-icon svgIcon="singular_apd"></mat-icon>
-      <p>PdC singulières</p>
-    </div>
-    <div>
-      <p>{{ apd.singularApd.getValue() | number :'1.2-2' }} {{ apd.singularApd.unit }}</p>
-    </div>
-  </article>
-<!-- select form -->
-  <mat-form-field class="singularity-selection">
-    <mat-label>Choix des singularitées</mat-label>
-    <mat-select [formControl]="singularitiesControl" multiple (selectionChange)="handleSingularitiesListChange()">
-      @for (singularity of singularities.getSingularities(); track singularity) {
-      <mat-option [value]="singularity.getName()">
-        <mat-icon svgIcon="{{ singularity.getIcon() }}"></mat-icon> {{ singularity.getDisplayName() }}
-      </mat-option>
-    }
-    </mat-select>
-  </mat-form-field>
-<!-- list singularity selected -->
-  <mat-accordion>
-  @for (singularitySelected of singularitiesControl.value; track singularitySelected) {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon svgIcon="{{ selectedSingularity(singularitySelected)?.getIcon() }}"></mat-icon>
-          {{ selectedSingularity(singularitySelected)?.getDisplayName() }}
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="singularity-setup">
-        <p>{{ calculateSingularApdByQuantity(selectedSingularity(singularitySelected)!) | number: '1.2-2' }} Pa</p>
-        <div class="singularity-setup__quantity">
-          <mat-form-field class="singularity-setup__quantity__input">
-            <input disabled matInput type="number" value="{{ selectedSingularity(singularitySelected)?.getQuantity() }}">
-          </mat-form-field>
-          <button mat-mini-fab (click)="handleRemoveSingularityQuantity(selectedSingularity(singularitySelected)!)"><mat-icon>remove</mat-icon></button>
-          <button mat-mini-fab (click)="handleAddSingularityQuantity(selectedSingularity(singularitySelected)!)"><mat-icon>add</mat-icon></button>
-        </div>
+<div class="wrapper">
+  <section class="apd-section">
+    <article class="apd-result">
+      <div class="apd-result-title">
+        <mat-icon svgIcon="total_apd"></mat-icon>
+        <p>Pdc totales</p>
       </div>
-    </mat-expansion-panel>
-  }
-  </mat-accordion>
-</section>
+      <div>
+        <p>{{ totalApd | number: '1.2-2' }} Pa</p>
+      </div>
+    </article>
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <section class="apd-section">
+    <article class="apd-result">
+      <div class="apd-result-title">
+        <mat-icon svgIcon="linear_apd"></mat-icon>
+        <p>PdC linéaires</p>
+      </div>
+      <div>
+        <p>{{ apd.linearApd.getValue() | number :'1.2-2' }} {{ apd.linearApd.unit }}</p>
+      </div>
+    </article>
+    <article class="linear-apd-setup">
+      <div>
+        <app-length-slider class="slider" (onLengthChange)="handleLengthChange($event)"></app-length-slider>
+      </div>
+    </article>
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <section class="apd-section singular-apd-section">
+    <article class="apd-result">
+      <div class="apd-result-title">
+        <mat-icon svgIcon="singular_apd"></mat-icon>
+        <p>PdC singulières</p>
+      </div>
+      <div>
+        <p>{{ apd.singularApd.getValue() | number :'1.2-2' }} {{ apd.singularApd.unit }}</p>
+      </div>
+    </article>
+
+    <article class="singularity-selection">
+      @for (singularity of singularities.getSingularities(); track singularity) {
+        <div class="singularity-item">
+          <mat-icon class="singularity-item__icon" svgIcon="{{ singularity.getIcon() }}"></mat-icon>
+          <div class="singularity-item__content">
+            <h5>{{ singularity.getDisplayName() }}</h5>
+            <div class="singularity-item__content__setup">
+              <div class="singularity-item__content__setup__result">
+                {{ calculateSingularApdByQuantity(singularity) | number: '1.2-2' }} Pa
+              </div>
+              <div class="singularity-item__content__setup__form">
+                <p>{{ singularity.getQuantity() }}</p>
+                <button mat-mini-fab (click)="handleRemoveSingularityQuantity(singularity)"><mat-icon>remove</mat-icon></button>
+                <button mat-mini-fab (click)="handleAddSingularityQuantity(singularity)"><mat-icon>add</mat-icon></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </article>
+  </section>
+</div>

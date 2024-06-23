@@ -71,26 +71,18 @@ export class RectangularDuctSetupComponent implements OnInit {
     private storageService: StorageService,
   ) {
     this.air = Air.getInstance();
-    this.duct = new RectangularDuct();
-    this.airflow = new Airflow();
-    this.apd = new Apd;
+    this.duct = this.storageService.duct as RectangularDuct;
+    this.airflow = this.storageService.airflow;
+    this.apd = this.storageService.apd;
     this.linearApd = new LinearApd();
     this.requestedProperty = 'dimensions';
     this.requestedDimension = 'ratio';
   }
 
   ngOnInit(): void {
-    this.duct = new RectangularDuct();
-    this.duct.length.setValue(1);
-    this.duct.width.setValue(199);
-    this.duct.height.setValue(199);
-    this.duct.ratio.setValue(1);
-    this.airflow.flowrate.setValue(1000);
-    this.airflow.flowspeed.setValue(7);
-    this.knownSideSize = 200;
-    this.handleRatioChange(1);
-    this.handleFlowrateChange(this.airflow.flowrate);
-    this.handleFlowspeedChange(this.airflow.flowspeed);
+    this.duct = this.storageService.duct as RectangularDuct;
+    this.airflow = this.storageService.airflow;
+    this.calculateDimensionsByRatio(this.airflow.flowrate, this.airflow.flowspeed, this.duct.ratio.getValue());
     this.calculateLinearApd();
     this.airSetupService.getAir().subscribe(() => {this.calculateLinearApd()});
   }
@@ -102,9 +94,9 @@ export class RectangularDuctSetupComponent implements OnInit {
   toggleRequestedDimension(): void {
     this.requestedDimension = this.requestedDimensionControl.value as 'ratio' | 'knownSize';
     if (this.requestedDimension === 'ratio') {
-      this.handleRatioChange(1);
+      this.handleRatioChange(this.duct.ratio.getValue());
     } else if (this.requestedDimension === 'knownSize') {
-      this.handleKnownSideSizeChange(this.knownSideSize);
+      this.handleKnownSideSizeChange(this.duct.height.getValue());
     }
   }
 
@@ -177,6 +169,8 @@ export class RectangularDuctSetupComponent implements OnInit {
     this.duct.width.setValue(calculatedDimensions[0]);
     this.duct.height.setValue(calculatedDimensions[1]);
     this.duct.equivalentDiameter = this.rectangularDuctCalculationService.equivalentDiameter(this.duct.width, this.duct.height);
+
+    this.storageService.setDuct(this.duct);
   }
 
   public calculateDimensionsByKnownSide(flowrate: Flowrate, flowspeed: Flowspeed, knownSideSize: number): void {
@@ -196,6 +190,8 @@ export class RectangularDuctSetupComponent implements OnInit {
     }
     this.duct.equivalentDiameter = this.rectangularDuctCalculationService.equivalentDiameter(this.duct.width, this.duct.height);
     this.duct.ratio.setValue(this.rectangularDuctCalculationService.ratio(this.duct.width, this.duct.height));
+
+    this.storageService.setDuct(this.duct);
   }
 
   public calculateFlowrate(flowspeed: Flowspeed, width: Width, height: Height): void {
@@ -210,6 +206,8 @@ export class RectangularDuctSetupComponent implements OnInit {
 
     const flowrateValue: number = this.airflowCalculationService.flowrate(this.airflow.flowspeed, this.duct.section);
     this.airflow.flowrate.setValue(flowrateValue);
+
+    this.storageService.setAirflow(this.airflow);
   }
 
   public calculateFlowspeed(flowrate: Flowrate, width: Width, height: Height): void {
@@ -224,11 +222,15 @@ export class RectangularDuctSetupComponent implements OnInit {
 
     const flowspeedValue: number = this.airflowCalculationService.flowspeed(this.airflow.flowrate, this.duct.section);
     this.airflow.flowspeed.setValue(flowspeedValue);
+
+    this.storageService.setAirflow(this.airflow);
   }
 
   calculateLinearApd(): void {
     this.linearApd.setValue(this.linearApdCalculationService.getlinearApd(this.air, this.duct, this.airflow));
     this.apd.linearApd = this.linearApd;
+
+    this.storageService.setApd(this.apd);
   }
 
   public goToApdSelector(): void {

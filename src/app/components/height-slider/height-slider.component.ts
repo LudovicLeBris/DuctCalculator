@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { Height } from '../../models/duct/height.model';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-height-slider',
@@ -22,10 +23,13 @@ import { Height } from '../../models/duct/height.model';
 export class HeightSliderComponent {
   height: Height;
   onHeightChange = output<Height>();
-  heightControl = new FormControl(200);
+  heightControl: FormControl;
 
-  constructor () {
-    this.height = new Height();
+  constructor (
+    private storageService: StorageService,
+  ) {
+    this.height = this.storageService.duct.height!;
+    this.heightControl = new FormControl(this.height.getValue());
   }
 
   handleChange(): void {

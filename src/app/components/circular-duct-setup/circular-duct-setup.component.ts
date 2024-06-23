@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CircularDuct } from '../../models/duct/duct.model';
-import { Shape } from '../../models/duct/shape.model';
 import { Air } from '../../models/air/air.model';
 import { Airflow } from '../../models/airflow/airflow.model';
 import { LinearApd } from '../../models/apd/linear-apd.model';
@@ -40,7 +39,6 @@ import { AirSetupService } from '../../services/air-setup.service';
   styleUrl: './circular-duct-setup.component.css'
 })
 export class CircularDuctSetupComponent implements OnInit {
-  @Input() shape!: Shape;
   air: Air;
   duct: CircularDuct;
   airflow: Airflow;
@@ -60,21 +58,17 @@ export class CircularDuctSetupComponent implements OnInit {
     private storageService: StorageService,
   ) {
     this.air = Air.getInstance();
-    this.duct = new CircularDuct();
-    this.airflow = new Airflow();
-    this.apd = new Apd;
+    this.duct = this.storageService.duct as CircularDuct;
+    this.airflow = this.storageService.airflow;
+    this.apd = this.storageService.apd;
     this.linearApd = new LinearApd();
     this.requestedProperty = 'diameter';
   }
 
   ngOnInit(): void {
-    this.duct = new CircularDuct();
-    this.duct.length.setValue(1);
-    this.duct.diameter.setValue(315);
-    this.airflow.flowrate.setValue(1000);
-    this.airflow.flowspeed.setValue(7);
-    this.handleFlowrateChange(this.airflow.flowrate);
-    this.handleFlowspeedChange(this.airflow.flowspeed);
+    this.duct = this.storageService.duct as CircularDuct;
+    this.airflow = this.storageService.airflow;
+    this.calculateDimensions(this.airflow.flowrate, this.airflow.flowspeed);
     this.calculateLinearApd();
     this.airSetupService.getAir().subscribe(() => {this.calculateLinearApd()});
   }
@@ -127,6 +121,8 @@ export class CircularDuctSetupComponent implements OnInit {
     const sectionValue = this.circularDuctCalculationService.sectionByDimensions(this.duct.diameter);
     this.duct.section.setValue(sectionValue);
     this.duct.equivalentDiameter = this.circularDuctCalculationService.equivalentDiameter(this.duct.diameter);
+
+    this.storageService.setDuct(this.duct);
   }
 
   public calculateFlowrate(flowspeed: Flowspeed, diameter: Diameter): void {
@@ -139,6 +135,8 @@ export class CircularDuctSetupComponent implements OnInit {
 
     const flowrateValue: number = this.airflowCalculationService.flowrate(this.airflow.flowspeed, this.duct.section);
     this.airflow.flowrate.setValue(flowrateValue);
+
+    this.storageService.setAirflow(this.airflow);
   }
 
   public calculateFlowspeed(flowrate: Flowrate, diameter: Diameter): void {
@@ -151,11 +149,15 @@ export class CircularDuctSetupComponent implements OnInit {
 
     const flowspeedValue: number = this.airflowCalculationService.flowspeed(this.airflow.flowrate, this.duct.section);
     this.airflow.flowspeed.setValue(flowspeedValue);
+
+    this.storageService.setAirflow(this.airflow);
   }
 
   public calculateLinearApd(): void {
     this.linearApd.setValue(this.linearApdCalculationService.getlinearApd(this.air, this.duct, this.airflow));
     this.apd.linearApd = this.linearApd;
+
+    this.storageService.setApd(this.apd);
   }
 
   public goToApdSelector(): void {

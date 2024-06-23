@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { Ratio } from '../../models/duct/ratio.model';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-ratio-slider',
@@ -22,10 +23,13 @@ import { Ratio } from '../../models/duct/ratio.model';
 export class RatioSliderComponent {
   ratio: Ratio;
   onRatioChange = output<number>();
-  ratioControl = new FormControl(1);
+  ratioControl: FormControl;
 
-  constructor () {
-    this.ratio = new Ratio;
+  constructor (
+    private storageService: StorageService,
+  ) {
+    this.ratio = this.storageService.duct.ratio!;
+    this.ratioControl = new FormControl(this.ratio.getValue());
   }
 
   handleChange(): void {

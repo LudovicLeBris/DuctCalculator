@@ -6,6 +6,12 @@ mat-divider {
   margin: 8px 16px;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 91vh;
+}
+
 .apd-section {
   display: flex;
   flex-direction: column;
@@ -38,32 +44,77 @@ mat-divider {
   width: 100%;
 }
 
+.singular-apd-section {
+  flex-grow: 1;
+  height: auto;
+  justify-content: start;
+  overflow-y: hidden;
+  margin-bottom: 16px;
+}
+
 .singularity-selection {
   width: 100%;
-}
-
-mat-panel-title mat-icon {
-  padding-right: 8px;
-}
-
-.singularity-setup {
+  height: 100%;
+  overflow-y: scroll;
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+.singularity-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.singularity-item__icon {
+  width: 42px;
+  height: 42px;
+}
+
+.singularity-item__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.singularity-item__content h5 {
+  font-size: medium;
+  font-weight: 500;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.singularity-item__content h5::first-letter {
+  text-transform: capitalize;
+}
+
+.singularity-item__content__setup {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.singularity-setup  p, button {
-  margin-bottom: 20px;
+.singularity-item__content__setup__result {
+
 }
 
-.singularity-setup__quantity {
+.singularity-item__content__setup__form {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  padding: 4px 8px;
 }
 
-.singularity-setup__quantity__input {
-  width: 64px;
+.singularity-item__content__setup__form p {
+  background-color:lightgrey;
+  text-align: end;
+  width: 30px;
+  padding: 4px;
+  border-radius: 4px;
+  font-weight: 500;
 }
-
