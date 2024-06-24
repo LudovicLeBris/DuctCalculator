@@ -19,6 +19,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SingularApdService } from '../../services/singular-apd.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-apd-selector',
@@ -51,6 +52,7 @@ export class ApdSelectorComponent implements OnInit {
     private storageService: StorageService,
     private linearApdCalculationService: LinearApdCalculationService,
     private singularApdService: SingularApdService,
+    private router: Router,
   )
   {
     this.duct = this.storageService.duct;
@@ -69,7 +71,6 @@ export class ApdSelectorComponent implements OnInit {
     this.calculateLinearApd();
     this.calculateSingularApd();
     this.calculateTotalApd();
-    this.initSingularityList();
   }
 
   handleLengthChange($event: Length): void {
@@ -113,6 +114,15 @@ export class ApdSelectorComponent implements OnInit {
 
   calculateSingularApdByQuantity(singularity: Singularity): number {
     return this.singularApdService.singularApdByQuantity(singularity, this.air, this.airflow);
+  }
+
+  goToDuctSelector(): void {
+    this.storageService.setApd(this.apd);
+    this.router.navigate(['duct-selector'])
+  }
+
+  goToResultsOverview(): void {
+    this.router.navigate(['results-overview']);
   }
 
 }

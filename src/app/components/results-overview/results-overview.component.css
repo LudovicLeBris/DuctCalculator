@@ -1,0 +1,54 @@
+h3 {
+  font-size:large;
+  font-weight: 500;
+  text-align: center;
+  line-height: 2rem;
+}
+
+h4 {
+  font-size:medium;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1rem;
+  margin-bottom: 0;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 16px;
+  padding-bottom: 16px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  outline: solid 1px lightgrey;
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px lightgray;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-line {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  align-items: center;
+}
+
+.result-line__title {
+  display: flex;
+  gap: 4px;
+}

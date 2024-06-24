@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { DuctSelectorComponent } from './components/duct-selector/duct-selector.component';
 import { ApdSelectorComponent } from './components/apd-selector/apd-selector.component';
+import { ResultsOverviewComponent } from './components/results-overview/results-overview.component';
 
 export const routes: Routes = [
   {
@@ -14,4 +15,8 @@ export const routes: Routes = [
     path: 'apd-selector',
     component: ApdSelectorComponent,
   },
+  {
+    path: 'results-overview',
+    component: ResultsOverviewComponent,
+  }
 ];
