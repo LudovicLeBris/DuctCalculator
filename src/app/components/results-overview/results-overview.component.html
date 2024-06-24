@@ -1,0 +1,194 @@
+<div class="wrapper">
+
+  <div>
+    <button mat-stroked-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      retour
+    </button>
+  </div>
+
+  <h3>Résumé de la sélection</h3>
+
+  <section>
+    <h4>Pertes de charges</h4>
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="total_apd"></mat-icon>
+          <p>PdC totales :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ apd.totalApd.getValue() | number: '1.0-2' }} Pa</p>
+      </div>
+    </article>
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="linear_apd"></mat-icon>
+          <p>PdC linéaires :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ apd.linearApd.getValue() | number: '1.0-2' }} Pa</p>
+      </div>
+    </article>
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="singular_apd"></mat-icon>
+          <p>PdC singulières :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ apd.singularApd.getValue() | number: '1.0-2' }} Pa</p>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <h4>Air</h4>
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="altitude"></mat-icon>
+          <p>Altitude MSL :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ air.getAltitude().getValue() }} m</p>
+      </div>
+    </article>
+
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="temperature"></mat-icon>
+          <p>Température :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ air.getTemperature().getValue() }} °C</p>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <h4>Flux d'air</h4>
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="flowrate"></mat-icon>
+          <p>Débit :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ airflow.flowrate.getValue() | number: '1.0-0' }} m³/h</p>
+      </div>
+    </article>
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="flowspeed"></mat-icon>
+          <p>Vitesse :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ airflow.flowspeed.getValue() | number: '1.0-2' }} m/s</p>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <h4>Gaine</h4>
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="{{ duct.shape.getIcon() }}"></mat-icon>
+          <p>Forme :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ duct.shape.valueDisplayName }}</p>
+      </div>
+    </article>
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="material"></mat-icon>
+          <p>Matériau :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ duct.material.getValue().displayName }}</p>
+      </div>
+    </article>
+  @if (duct.shape.getValue() === 'circular') {
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="diameter"></mat-icon>
+          <p>Diamètre :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ duct.diameter?.getValue() | number: '1.0-0' }} mm</p>
+      </div>
+    </article>
+  } @else if (duct.shape.getValue() === 'rectangular') {
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="width"></mat-icon>
+          <p>Largeur :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ duct.width?.getValue() | number: '1.0-0' }} mm</p>
+      </div>
+    </article>
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="height"></mat-icon>
+          <p>Hauteur :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ duct.height?.getValue() | number: '1.0-0' }} mm</p>
+      </div>
+    </article>
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="ratio"></mat-icon>
+          <p>Ratio :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ duct.ratio?.getValue() | number: '1.0-1' }}</p>
+      </div>
+    </article>
+  }
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="length"></mat-icon>
+          <p>Longueur :</p>
+        </div>
+        <div class="result-line__values"></div>
+          <p>{{ duct.length.getValue() | number: '1.0-1' }} m</p>
+      </div>
+    </article>
+  </section>
+
+  @if (apd.singularApd.getValue() ) {
+  <section>
+    <h4>Accidents de gaine</h4>
+  @for (singularity of singularities.getSingularities(); track singularity) {
+    @if (singularity.getQuantity() > 0) {
+      <article class="result">
+        <div class="result-line">
+          <div class="result-line__title">
+            <mat-icon svgIcon="{{ singularity.getIcon() }}"></mat-icon>
+            <p>{{ singularity.getDisplayName() }} :</p>
+          </div>
+          <div class="result-line__values"></div>
+            <p>{{ singularity.getQuantity() }}</p>
+        </div>
+      </article>
+    }
+  }
+  </section>
+  }
+
+
+
+</div>
