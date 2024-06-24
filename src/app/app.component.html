@@ -1,24 +1,31 @@
-<header>
-  <nav>
-    <mat-toolbar>
-      <mat-icon svgIcon="apd"></mat-icon>
-      <span>Duct Calculator</span>
-      <span style="flex: 1 1 auto;"></span>
-      <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></button>
-      <mat-menu #menu yPosition="below" xPosition="before">
-        <button mat-menu-item (click)="goToHome()">
-          <mat-icon>home</mat-icon>
-          <span>Accueil</span>
-        </button>
-        <button mat-menu-item (click)="openAirSetupBottomSheet()">
-          <mat-icon>air</mat-icon>
-          <span>Air</span>
-        </button>
-      </mat-menu>
-    </mat-toolbar>
-  </nav>
-</header>
+<div class="main-container">
+  <header>
+    <nav>
+      <mat-toolbar>
+        <mat-icon svgIcon="apd"></mat-icon>
+        <span>Duct Calculator</span>
+        <span style="flex: 1 1 auto;"></span>
+        <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></button>
+        <mat-menu #menu yPosition="below" xPosition="before">
+          <button mat-menu-item (click)="goToHome()">
+            <mat-icon>home</mat-icon>
+            <span>Accueil</span>
+          </button>
+          <button mat-menu-item (click)="openAirSetupBottomSheet()">
+            <mat-icon>air</mat-icon>
+            <span>Air</span>
+          </button>
+        </mat-menu>
+      </mat-toolbar>
+    </nav>
+  </header>
 
-<main>
-  <router-outlet></router-outlet>
-</main>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <p>v1.0.0</p>
+    <p>made with <span class="hearth">&hearts;</span> in France</p>
+  </footer>
+</div>
