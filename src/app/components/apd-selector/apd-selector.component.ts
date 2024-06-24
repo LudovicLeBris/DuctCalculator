@@ -11,8 +11,7 @@ import { Length } from '../../models/duct/length.model';
 import { LinearApdCalculationService } from '../../services/linear-apd-calculation.service';
 import { Air } from '../../models/air/air.model';
 import { AirSetupService } from '../../services/air-setup.service';
-import { SingularitiesValues, Singularity } from '../../models/singularity/singularity.model';
-import { SingularityFactory } from '../../models/singularity/singularity-factory';
+import { Singularity } from '../../models/singularity/singularity.model';
 import { Singularities } from '../../models/singularity/singularities.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -44,7 +43,7 @@ export class ApdSelectorComponent implements OnInit {
   airflow = new Airflow;
   apd = new Apd;
   totalApd: number = 0;
-  singularities = new Singularities();
+  singularities: Singularities;
   singularitiesControl = new FormControl([]);
 
   constructor (
@@ -54,16 +53,16 @@ export class ApdSelectorComponent implements OnInit {
     private singularApdService: SingularApdService,
   )
   {
+    this.duct = this.storageService.duct;
+    this.airflow = this.storageService.airflow;
+    this.apd = this.storageService.apd;
+    this.singularities = this.storageService.singularities;
+    this.apd.additionalApd.setValue(0);
     this.airSetupService.getAir().subscribe(() => {
       this.calculateLinearApd();
       this.calculateSingularApd();
       this.calculateTotalApd();
-    })
-    this.duct = this.storageService.duct;
-    this.airflow = this.storageService.airflow;
-    this.apd = this.storageService.apd;
-    this.apd.additionalApd.setValue(0);
-    this.apd.singularApd.setValue(0);
+    });
 
   }
   ngOnInit(): void {
@@ -91,22 +90,14 @@ export class ApdSelectorComponent implements OnInit {
 
   calculateTotalApd(): void {
     this.totalApd = this.apd.linearApd.getValue() + this.apd.singularApd.getValue() + this.apd.additionalApd.getValue();
-  }
-
-  initSingularityList():void {
-    const singularityFactory = new SingularityFactory(this.duct.shape.getValue());
-    for (const singularityType in SingularitiesValues) {
-      if (Object.prototype.hasOwnProperty.call(SingularitiesValues, singularityType)) {
-        const singularity = singularityFactory.createSingularity(singularityType);
-        this.singularities.addSingularity(singularity!);
-      }
-    }
+    this.apd.totalApd.setValue(this.totalApd);
   }
 
   handleAddSingularityQuantity(singularity: Singularity) {
     singularity.setQuantity(singularity.getQuantity() + 1);
     this.calculateSingularApd();
     this.calculateTotalApd();
+    this.storageService.setSingularities(this.singularities)
   }
 
   handleRemoveSingularityQuantity(singularity: Singularity) {
@@ -114,6 +105,7 @@ export class ApdSelectorComponent implements OnInit {
       singularity.setQuantity(singularity.getQuantity() - 1);
       this.calculateSingularApd();
       this.calculateTotalApd();
+      this.storageService.setSingularities(this.singularities)
     } else {
       return;
     }
