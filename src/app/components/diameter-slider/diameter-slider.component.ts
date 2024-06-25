@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { Diameter, DiameterValue, normalizedDiameters } from '../../models/duct/diameter.model';
 import { StorageService } from '../../services/storage.service';
+import { LongPressDirective } from '../directives/long-press.directive';
 
 @Component({
   selector: 'app-diameter-slider',
@@ -15,7 +16,8 @@ import { StorageService } from '../../services/storage.service';
     ReactiveFormsModule,
     MatSliderModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    LongPressDirective,
   ],
   templateUrl: './diameter-slider.component.html',
   styleUrl: './diameter-slider.component.css'

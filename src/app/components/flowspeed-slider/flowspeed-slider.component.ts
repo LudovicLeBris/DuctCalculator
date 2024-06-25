@@ -6,6 +6,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { Flowspeed } from '../../models/airflow/flowspeed.model';
 import { CommonModule } from '@angular/common';
 import { StorageService } from '../../services/storage.service';
+import { LongPressDirective } from '../directives/long-press.directive';
 
 @Component({
   selector: 'app-flowspeed-slider',
@@ -15,7 +16,8 @@ import { StorageService } from '../../services/storage.service';
     ReactiveFormsModule,
     MatSliderModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    LongPressDirective,
   ],
   templateUrl: './flowspeed-slider.component.html',
   styleUrl: './flowspeed-slider.component.css'

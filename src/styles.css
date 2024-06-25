@@ -2,8 +2,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; user-select: none; }
 
 button {
-  touch-action: manipulation;
+  touch-action: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }

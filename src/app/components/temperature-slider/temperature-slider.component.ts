@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { Temperature } from '../../models/air/temperature.model';
 import { Air } from '../../models/air/air.model';
+import { LongPressDirective } from '../directives/long-press.directive';
 
 @Component({
   selector: 'app-temperature-slider',
@@ -16,6 +17,7 @@ import { Air } from '../../models/air/air.model';
     MatSliderModule,
     MatButtonModule,
     MatIconModule,
+    LongPressDirective,
   ],
   templateUrl: './temperature-slider.component.html',
   styleUrl: './temperature-slider.component.css'
@@ -40,14 +42,14 @@ export class TemperatureSliderComponent {
 
   increaseValue() {
     if (this.temperatureControl.value! < 60) {
-      this.temperatureControl.setValue(this.temperatureControl.value! + 1);
+      this.temperatureControl.setValue(this.temperatureControl.value! + 0.5);
       this.handleChange()
     }
   }
 
   decreaseValue() {
     if (this.temperatureControl.value! > -40) {
-      this.temperatureControl.setValue(this.temperatureControl.value! - 1);
+      this.temperatureControl.setValue(this.temperatureControl.value! - 0.5);
       this.handleChange()
     }
   }

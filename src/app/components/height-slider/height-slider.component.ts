@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { Height } from '../../models/duct/height.model';
 import { StorageService } from '../../services/storage.service';
+import { LongPressDirective } from '../directives/long-press.directive';
 
 @Component({
   selector: 'app-height-slider',
@@ -16,6 +17,7 @@ import { StorageService } from '../../services/storage.service';
     MatSliderModule,
     MatButtonModule,
     MatIconModule,
+    LongPressDirective,
   ],
   templateUrl: './height-slider.component.html',
   styleUrl: './height-slider.component.css'
@@ -39,14 +41,14 @@ export class HeightSliderComponent {
 
   increaseValue() {
     if (this.heightControl.value! < 3000) {
-      this.heightControl.setValue(this.heightControl.value! + 10);
+      this.heightControl.setValue(this.heightControl.value! + 1);
       this.handleChange()
     }
   }
 
   decreaseValue() {
     if (this.heightControl.value! > 10) {
-      this.heightControl.setValue(this.heightControl.value! - 10);
+      this.heightControl.setValue(this.heightControl.value! - 1);
       this.handleChange()
     }
   }

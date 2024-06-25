@@ -4,11 +4,11 @@
     <p>{{temperature.displayName}}</p>
   </div>
   <div class="content-wrapper">
-    <p><span class="value">{{ temperatureControl.value | number: '1.0-0' }}</span> {{ temperature.unit }}</p>
+    <p><span class="value">{{ temperatureControl.value | number: '1.1-1' }}</span> {{ temperature.unit }}</p>
   </div>
 </div>
 <div class="slider-wrapper">
-  <button mat-mini-fab (click)="decreaseValue()">
+  <button mat-mini-fab (click)="decreaseValue()" longPress (mouseLongPress)="decreaseValue()">
     <mat-icon>remove</mat-icon>
   </button>
   <mat-slider
@@ -18,7 +18,7 @@
     (change)="handleChange()">
     <input matSliderThumb [formControl]="temperatureControl" >
   </mat-slider>
-  <button mat-mini-fab (click)="increaseValue()">
+  <button mat-mini-fab (click)="increaseValue()" longPress (mouseLongPress)="increaseValue()">
     <mat-icon>add</mat-icon>
   </button>
 
