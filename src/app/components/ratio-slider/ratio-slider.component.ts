@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { Ratio } from '../../models/duct/ratio.model';
 import { StorageService } from '../../services/storage.service';
+import { LongPressDirective } from '../directives/long-press.directive';
 
 @Component({
   selector: 'app-ratio-slider',
@@ -15,7 +16,8 @@ import { StorageService } from '../../services/storage.service';
     ReactiveFormsModule,
     MatSliderModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    LongPressDirective,
   ],
   templateUrl: './ratio-slider.component.html',
   styleUrl: './ratio-slider.component.css'

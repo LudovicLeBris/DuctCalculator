@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { StorageService } from '../../services/storage.service';
+import { LongPressDirective } from '../directives/long-press.directive';
 
 @Component({
   selector: 'app-knowside-slider',
@@ -15,6 +16,7 @@ import { StorageService } from '../../services/storage.service';
     MatSliderModule,
     MatButtonModule,
     MatIconModule,
+    LongPressDirective,
   ],
   templateUrl: './knowside-slider.component.html',
   styleUrl: './knowside-slider.component.css'
@@ -38,14 +40,14 @@ export class KnowsideSliderComponent {
 
   increaseValue() {
     if (this.knownSideControl.value! < 3000) {
-      this.knownSideControl.setValue(this.knownSideControl.value! + 100);
+      this.knownSideControl.setValue(this.knownSideControl.value! + 10);
       this.handleChange()
     }
   }
 
   decreaseValue() {
     if (this.knownSideControl.value! > 100) {
-      this.knownSideControl.setValue(this.knownSideControl.value! - 100);
+      this.knownSideControl.setValue(this.knownSideControl.value! - 10);
       this.handleChange()
     }
   }

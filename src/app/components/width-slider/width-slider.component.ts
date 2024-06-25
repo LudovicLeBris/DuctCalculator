@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { Width } from '../../models/duct/width.model';
 import { StorageService } from '../../services/storage.service';
+import { LongPressDirective } from '../directives/long-press.directive';
 
 @Component({
   selector: 'app-width-slider',
@@ -16,6 +17,7 @@ import { StorageService } from '../../services/storage.service';
     MatSliderModule,
     MatButtonModule,
     MatIconModule,
+    LongPressDirective,
   ],
   templateUrl: './width-slider.component.html',
   styleUrl: './width-slider.component.css'
@@ -39,14 +41,14 @@ export class WidthSliderComponent {
 
   increaseValue() {
     if (this.widthControl.value! < 3000) {
-      this.widthControl.setValue(this.widthControl.value! + 10);
+      this.widthControl.setValue(this.widthControl.value! + 1);
       this.handleChange()
     }
   }
 
   decreaseValue() {
     if (this.widthControl.value! > 10) {
-      this.widthControl.setValue(this.widthControl.value! - 10);
+      this.widthControl.setValue(this.widthControl.value! - 1);
       this.handleChange()
     }
   }

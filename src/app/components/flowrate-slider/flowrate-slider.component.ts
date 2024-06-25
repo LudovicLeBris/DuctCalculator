@@ -1,4 +1,4 @@
-import { Component, OnInit, output } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { Flowrate } from '../../models/airflow/flowrate.model';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { StorageService } from '../../services/storage.service';
 import { CommonModule } from '@angular/common';
+import { LongPressDirective } from '../directives/long-press.directive';
 
 @Component({
   selector: 'app-flowrate-slider',
@@ -16,9 +17,14 @@ import { CommonModule } from '@angular/common';
     MatSliderModule,
     MatButtonModule,
     MatIconModule,
+    LongPressDirective,
   ],
   templateUrl: './flowrate-slider.component.html',
-  styleUrl: './flowrate-slider.component.css'
+  styleUrl: './flowrate-slider.component.css',
+  // hostDirectives: [{
+  //   directive: LongPressDirective,
+  //   outputs: ['mouseLongPress']
+  // }],
 })
 export class FlowrateSliderComponent {
   flowrate: Flowrate;
@@ -53,14 +59,14 @@ export class FlowrateSliderComponent {
 
   increaseValue() {
     if (this.flowrateControl.value! < 100000) {
-      this.flowrateControl.setValue(this.flowrateControl.value! + this.step);
+      this.flowrateControl.setValue(this.flowrateControl.value! + this.step/10);
       this.handleChange()
     }
   }
 
   decreaseValue() {
     if (this.flowrateControl.value! > 10) {
-      this.flowrateControl.setValue(this.flowrateControl.value! - this.step);
+      this.flowrateControl.setValue(this.flowrateControl.value! - this.step/10);
       this.handleChange()
     }
   }

@@ -6,6 +6,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { Altitude } from '../../models/air/altitude.model';
 import { CommonModule } from '@angular/common';
 import { Air } from '../../models/air/air.model';
+import { LongPressDirective } from '../directives/long-press.directive';
 
 @Component({
   selector: 'app-altitude-slider',
@@ -16,6 +17,7 @@ import { Air } from '../../models/air/air.model';
     MatSliderModule,
     MatButtonModule,
     MatIconModule,
+    LongPressDirective,
   ],
   templateUrl: './altitude-slider.component.html',
   styleUrl: './altitude-slider.component.css'
@@ -40,14 +42,14 @@ export class AltitudeSliderComponent {
 
   increaseValue() {
     if (this.altitudeControl.value! < 4000) {
-      this.altitudeControl.setValue(this.altitudeControl.value! + 50);
+      this.altitudeControl.setValue(this.altitudeControl.value! + 5);
       this.handleChange()
     }
   }
 
   decreaseValue() {
     if (this.altitudeControl.value! > 0) {
-      this.altitudeControl.setValue(this.altitudeControl.value! - 50);
+      this.altitudeControl.setValue(this.altitudeControl.value! - 5);
       this.handleChange()
     }
   }
