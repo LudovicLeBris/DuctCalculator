@@ -9,7 +9,7 @@ mat-divider {
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 120vh;
 }
 
 .nav-section {
@@ -125,3 +125,28 @@ mat-divider {
   border-radius: 4px;
   font-weight: 500;
 }
+
+.additional-apd-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.additional-apd-selection button {
+  width: 100%;
+}
+
+.additional-apd-results {
+  display: flex;
+  justify-content: space-between;
+}
+
+.apd-result-commands {
+  display: flex;
+  gap: 8px;
+}
+
+.apd-result-commands span {
+  width: 40px;
+}
+

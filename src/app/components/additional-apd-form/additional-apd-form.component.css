@@ -1,0 +1,25 @@
+h4 {
+  font-size: large;
+  font-weight: 500;
+  line-height: 1rem;
+  text-decoration: underline;
+  margin-bottom: 8px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 0 8px;
+  margin-top: 8px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  width: 100%;
+}

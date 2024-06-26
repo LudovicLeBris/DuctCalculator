@@ -5,6 +5,7 @@ import { Apd } from '../models/apd/apd.model';
 import { Singularities } from '../models/singularity/singularities.model';
 import { SingularityFactory } from '../models/singularity/singularity-factory';
 import { SingularitiesValues } from '../models/singularity/singularity.model';
+import { AdditionalApdList } from '../models/apd/additionals-apd-list.modes';
 
 
 
@@ -16,12 +17,14 @@ export class StorageService {
   airflow: Airflow;
   apd: Apd;
   singularities: Singularities;
+  additionalApdList: AdditionalApdList;
 
   constructor() {
     this.duct = new CircularDuct;
     this.airflow = new Airflow();
     this.apd = new Apd();
     this.singularities = new Singularities;
+    this.additionalApdList = new AdditionalApdList;
     this.airflow.flowrate.setValue(1000);
     this.airflow.flowspeed.setValue(7);
     this.duct.length.setValue(1);
@@ -53,5 +56,9 @@ export class StorageService {
         this.singularities.addSingularity(singularity!);
       }
     }
+  }
+
+  setAdditionalApdList(additionalApdList: AdditionalApdList): void {
+    this.additionalApdList = additionalApdList;
   }
 }
