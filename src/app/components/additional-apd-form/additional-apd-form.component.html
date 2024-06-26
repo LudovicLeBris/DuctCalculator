@@ -1,0 +1,30 @@
+<section>
+  <h4>Ajout PdC additionnelle</h4>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Nom PdC additionnelle</mat-label>
+      <input matInput placeholder="Ex. Filtres" formControlName="name">
+      @if (form.get('name')?.invalid) {
+        <mat-error>Un nom est requis.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Valeur en Pa</mat-label>
+      <input matInput type="number" placeholder="50" formControlName="value">
+      @if (form.get('value')?.invalid) {
+        @if (form.get('value')!.errors!['required'] && form.get('value')!.touched) {
+          <mat-error>Une valeur est requise.</mat-error>
+        }
+        @if (form.get('value')!.errors!['min'] && form.get('value')!.touched) {
+          <mat-error>La valeur doit être supérieure à 0.</mat-error>
+        }
+      }
+    </mat-form-field>
+
+    <button mat-flat-button type="submit" [disabled]="form.invalid">
+      <mat-icon>check</mat-icon>
+      Ajouter
+    </button>
+  </form>
+</section>

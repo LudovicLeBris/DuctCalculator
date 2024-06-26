@@ -75,4 +75,46 @@
       }
     </article>
   </section>
+
+  <mat-divider></mat-divider>
+
+  <section class="apd-section">
+    <article class="apd-result">
+      <div class="apd-result-title">
+        <mat-icon svgIcon="additional_apd"></mat-icon>
+        <p>PdC additionelles</p>
+      </div>
+      <div>
+        <p>{{ apd.additionalApd.getValue() | number :'1.2-2' }} {{ apd.singularApd.unit }}</p>
+      </div>
+    </article>
+
+    <article class="additional-apd-selection">
+      <div>
+        <button mat-stroked-button (click)="openAddAdditionalApdBottomSheet()">
+          <mat-icon>add</mat-icon>
+          Ajouter 1 PdC additionelle
+        </button>
+      </div>
+      @for (additionalApd of additionalApdList.getAdditionalApdList(); track $index) {
+      <div class="apd-result">
+        <div class="apd-result-title">
+          <mat-icon svgIcon="additional_apd"></mat-icon>
+          <p>{{ additionalApd.getName() }}</p>
+        </div>
+        <div>
+          <p>{{ additionalApd.getValue() }} Pa</p>
+        </div>
+        <div class="apd-result-commands">
+          <span><button mat-mini-fab (click)="removeAdditionalApd(additionalApd)">
+            <mat-icon>delete</mat-icon>
+          </button></span>
+          <span><button mat-mini-fab (click)="openEditAdditionalApdBottomSheet($index)">
+            <mat-icon>edit</mat-icon>
+          </button></span>
+        </div>
+      </div>
+      }
+    </article>
+  </section>
 </div>
