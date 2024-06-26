@@ -8,7 +8,7 @@
   </div>
 </div>
 <div class="slider-wrapper">
-  <button mat-mini-fab (click)="decreaseValue()" longPress (mouseLongPress)="decreaseValue()">
+  <button mat-mini-fab (click)="decreaseValue()">
     <mat-icon>remove</mat-icon>
   </button>
   <mat-slider
@@ -18,7 +18,7 @@
     (change)="handleChange()">
     <input matSliderThumb [formControl]="diameterControl" >
   </mat-slider>
-  <button mat-mini-fab (click)="increaseValue()" longPress (mouseLongPress)="increaseValue()">
+  <button mat-mini-fab (click)="increaseValue()">
     <mat-icon>add</mat-icon>
   </button>
 

@@ -17,7 +17,6 @@ import { LongPressDirective } from '../directives/long-press.directive';
     MatSliderModule,
     MatButtonModule,
     MatIconModule,
-    LongPressDirective,
   ],
   templateUrl: './diameter-slider.component.html',
   styleUrl: './diameter-slider.component.css'
