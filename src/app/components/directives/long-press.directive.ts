@@ -4,12 +4,11 @@ import { Subscription, filter, fromEvent, map, merge, switchMap, timer, of } fro
 @Directive({
   selector: '[longPress]',
   standalone: true,
-  outputs: ['mouseLongPress'],
 })
 export class LongPressDirective implements OnDestroy {
 
   private eventSubscriber: Subscription;
-  threshold = 1000;
+  threshold = 500;
 
   @Output()
   mouseLongPress = new EventEmitter();
@@ -37,9 +36,9 @@ export class LongPressDirective implements OnDestroy {
     this.eventSubscriber = merge(mouseDown, mouseup, touchstart, touchend)
       .pipe(
         switchMap((state) => (state ? timer(this.threshold, 100) : of(null))),
-        map((value) => value)
+        filter((value) => {if(value) {return true} return false})
       )
-      .subscribe(() => {this.mouseLongPress.emit()});
+      .subscribe(() => this.mouseLongPress.emit());
   }
 
   ngOnDestroy(): void {
