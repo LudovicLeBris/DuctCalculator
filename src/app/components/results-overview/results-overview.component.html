@@ -189,6 +189,25 @@
   </section>
   }
 
+  @if (apd.additionalApd.getValue()) {
+  <section>
+    <h4>PdC additionnelles</h4>
+  @for (additionalApd of additionnalApdList.getAdditionalApdList(); track additionalApd) {
+    <article class="result">
+      <div class="result-line">
+        <div class="result-line__title">
+          <mat-icon svgIcon="additional_apd"></mat-icon>
+          <p>{{ additionalApd.getName() }} :</p>
+        </div>
+        <div class="result-line__values">
+          <p>{{ additionalApd.getValue() }} Pa</p>
+        </div>
+      </div>
+    </article>
+  }
+  </section>
+  }
+
 
 
 </div>
