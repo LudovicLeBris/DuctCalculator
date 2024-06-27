@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { AdditionalApdList } from '../../models/apd/additionals-apd-list.modes';
 
 @Component({
   selector: 'app-results-overview',
@@ -27,6 +28,7 @@ export class ResultsOverviewComponent {
   airflow: Airflow;
   singularities: Singularities;
   apd: Apd;
+  additionnalApdList: AdditionalApdList;
 
   constructor (
     private storageService: StorageService,
@@ -36,6 +38,7 @@ export class ResultsOverviewComponent {
     this.airflow = this.storageService.airflow;
     this.singularities = this.storageService.singularities;
     this.apd = this.storageService.apd;
+    this.additionnalApdList = this.storageService.additionalApdList;
   }
 
   goBack(): void {
