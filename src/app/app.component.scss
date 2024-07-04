@@ -4,10 +4,6 @@
   min-height: 100%;
 }
 
-p {
-  margin-bottom: 0;
-}
-
 mat-toolbar {
   background-color: #2EA0FF;
 
@@ -64,6 +60,7 @@ footer {
   background-color: #2EA0FF;
   text-align: center;
   margin-top: 16px;
+  padding: 16px 0;
   font-size: small ;
 
   @media (min-width: 640px) {
