@@ -1,3 +1,7 @@
+.buttons {
+  margin-top: 8px;
+}
+
 h3 {
   font-size:large;
   font-weight: 500;
@@ -46,4 +50,5 @@ section {
 .result-line__title {
   display: flex;
   gap: 4px;
+  align-items: center;
 }
