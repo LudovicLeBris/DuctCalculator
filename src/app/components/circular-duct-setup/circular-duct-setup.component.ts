@@ -21,6 +21,9 @@ import { Router } from '@angular/router';
 import { StorageService } from '../../services/storage.service';
 import { Apd } from '../../models/apd/apd.model';
 import { AirSetupService } from '../../services/air-setup.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { materialList } from '../../models/duct/material.model';
 
 @Component({
   selector: 'app-circular-duct-setup',
@@ -34,6 +37,8 @@ import { AirSetupService } from '../../services/air-setup.service';
     DiameterSliderComponent,
     FlowrateSliderComponent,
     FlowspeedSliderComponent,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   templateUrl: './circular-duct-setup.component.html',
   styleUrl: './circular-duct-setup.component.css'
@@ -49,6 +54,9 @@ export class CircularDuctSetupComponent implements OnInit {
   requestedPropertyControl = new FormControl('diameter');
   requestedProperty: 'diameter' | 'flowrate' | 'flowspeed';
 
+  materialControl: FormControl;
+  materialList = materialList;
+
   constructor (
     private airSetupService: AirSetupService,
     private circularDuctCalculationService : CircularDuctCalculationService,
@@ -63,6 +71,7 @@ export class CircularDuctSetupComponent implements OnInit {
     this.apd = this.storageService.apd;
     this.linearApd = new LinearApd();
     this.requestedProperty = 'diameter';
+    this.materialControl = new FormControl(this.duct.material.getValue());
   }
 
   ngOnInit(): void {
@@ -71,6 +80,7 @@ export class CircularDuctSetupComponent implements OnInit {
     this.calculateDimensions(this.airflow.flowrate, this.airflow.flowspeed);
     this.calculateLinearApd();
     this.airSetupService.getAir().subscribe(() => {this.calculateLinearApd()});
+    this.materialControl.setValue(this.duct.material.getValue().name);
   }
 
   toggleRequestedProperty(): void {
@@ -104,6 +114,13 @@ export class CircularDuctSetupComponent implements OnInit {
     } else if (this.requestedProperty === 'flowrate') {
       this.calculateFlowrate(this.airflow.flowspeed, this.duct.diameter);
     }
+    this.calculateLinearApd();
+  }
+
+  handleMaterialChange() {
+    const materialValue = this.materialControl.value!;
+    const materialProperty = this.materialList.find(material => material.name === materialValue)!;
+    this.duct.material.setValue(materialProperty);
     this.calculateLinearApd();
   }
 
