@@ -26,6 +26,9 @@ import { Router } from '@angular/router';
 import { StorageService } from '../../services/storage.service';
 import { Apd } from '../../models/apd/apd.model';
 import { AirSetupService } from '../../services/air-setup.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { materialList } from '../../models/duct/material.model';
 
 @Component({
   selector: 'app-rectangular-duct-setup',
@@ -42,6 +45,8 @@ import { AirSetupService } from '../../services/air-setup.service';
     HeightSliderComponent,
     RatioSliderComponent,
     KnowsideSliderComponent,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   templateUrl: './rectangular-duct-setup.component.html',
   styleUrl: './rectangular-duct-setup.component.css'
@@ -62,6 +67,9 @@ export class RectangularDuctSetupComponent implements OnInit {
   requestedDimensionControl = new FormControl('ratio');
   requestedDimension: 'ratio' | 'knownSize';
 
+  materialControl: FormControl;
+  materialList = materialList;
+
   constructor (
     private airSetupService: AirSetupService,
     private rectangularDuctCalculationService : RectangularDuctCalculationService,
@@ -77,6 +85,7 @@ export class RectangularDuctSetupComponent implements OnInit {
     this.linearApd = new LinearApd();
     this.requestedProperty = 'dimensions';
     this.requestedDimension = 'ratio';
+    this.materialControl = new FormControl(this.duct.material.getValue());
   }
 
   ngOnInit(): void {
@@ -85,6 +94,7 @@ export class RectangularDuctSetupComponent implements OnInit {
     this.calculateDimensionsByRatio(this.airflow.flowrate, this.airflow.flowspeed, this.duct.ratio.getValue());
     this.calculateLinearApd();
     this.airSetupService.getAir().subscribe(() => {this.calculateLinearApd()});
+    this.materialControl.setValue(this.duct.material.getValue().name);
   }
 
   toggleRequestedProperty(): void {
@@ -171,6 +181,13 @@ export class RectangularDuctSetupComponent implements OnInit {
     this.duct.equivalentDiameter = this.rectangularDuctCalculationService.equivalentDiameter(this.duct.width, this.duct.height);
 
     this.storageService.setDuct(this.duct);
+  }
+
+  handleMaterialChange() {
+    const materialValue = this.materialControl.value!;
+    const materialProperty = this.materialList.find(material => material.name === materialValue)!;
+    this.duct.material.setValue(materialProperty);
+    this.calculateLinearApd();
   }
 
   public calculateDimensionsByKnownSide(flowrate: Flowrate, flowspeed: Flowspeed, knownSideSize: number): void {

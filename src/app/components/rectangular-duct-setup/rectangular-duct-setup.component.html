@@ -140,3 +140,15 @@
   </mat-button-toggle-group>
 </article>
 }
+
+<article class="material-selector">
+  <mat-icon svgIcon="material"></mat-icon>
+  <mat-form-field>
+    <mat-label>Matériau</mat-label>
+    <mat-select [formControl]="materialControl" (selectionChange)="handleMaterialChange()">
+    @for (material of materialList; track $index) {
+      <mat-option value="{{ material.name }}">{{ material.displayName }}</mat-option>
+    }
+    </mat-select>
+  </mat-form-field>
+</article>
