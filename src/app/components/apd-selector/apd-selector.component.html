@@ -11,12 +11,12 @@
   </section>
 
   <section class="apd-section">
-    <article class="apd-result">
+    <article class="apd-result total-result">
       <div class="apd-result-title">
         <mat-icon svgIcon="total_apd"></mat-icon>
         <p>Pdc totales</p>
       </div>
-      <div>
+      <div class="important-value">
         <p>{{ totalApd | number: '1.2-2' }} Pa</p>
       </div>
     </article>
@@ -85,7 +85,7 @@
         <p>PdC additionelles</p>
       </div>
       <div>
-        <p>{{ apd.additionalApd.getValue() | number :'1.2-2' }} {{ apd.singularApd.unit }}</p>
+        <p>{{ apd.additionalApd.getValue() | number :'1.0-0' }} {{ apd.singularApd.unit }}</p>
       </div>
     </article>
 
@@ -97,7 +97,7 @@
         </button>
       </div>
       @for (additionalApd of additionalApdList.getAdditionalApdList(); track $index) {
-      <div class="apd-result">
+      <div class="additional-apd-item">
         <div class="apd-result-title">
           <mat-icon svgIcon="additional_apd"></mat-icon>
           <p>{{ additionalApd.getName() }}</p>
@@ -105,7 +105,7 @@
         <div>
           <p>{{ additionalApd.getValue() }} Pa</p>
         </div>
-        <div class="apd-result-commands">
+        <div class="additional-apd-item__commands">
           <span><button mat-mini-fab (click)="removeAdditionalApd(additionalApd)">
             <mat-icon>delete</mat-icon>
           </button></span>
