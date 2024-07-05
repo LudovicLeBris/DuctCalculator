@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+@use './m3-theme.scss';
+
+@include mat.core();
+
+html {
+  height: 100%;
+  @include mat.all-component-themes(m3-theme.$light-theme);
+  // @include mat.core-theme(m3-theme.$light-theme);
+  // @include mat.button-theme(m3-theme.$light-theme);
+}
+body {height: 100%; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+// @include mat.color-variants-backwards-compatibility(m3-theme.$light-theme);
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}

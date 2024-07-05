@@ -20,7 +20,7 @@ import { AirSetupComponent } from './components/air-setup/air-setup.component';
     MatBottomSheetModule,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
 

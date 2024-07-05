@@ -4,6 +4,11 @@
   justify-content: center;
   margin: 0 16px;
   margin-bottom: 16px;
+  padding: 8px;
+  outline: solid 1px lightgray;
+  border-radius: 8px;
+  background-color: #d1e4ff;
+  box-shadow: 4px 4px 4px lightgrey;
 }
 
 .result-list {
@@ -31,6 +36,17 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.result-list-item-value {
+}
+
+.important-value {
+  background-color: #2EA0FF80;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: larger;
+  font-weight: 500;
 }
 
 .mat-icon {

@@ -1,7 +1,3 @@
-p {
-  margin-bottom: 0;
-}
-
 mat-divider {
   margin: 8px 16px;
 }
@@ -32,12 +28,31 @@ mat-divider {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 12px;
+  outline: solid 1px lightgray;
+  border-radius: 8px;
+  background-color: #d1e4ff;
+  box-shadow: 4px 4px 4px lightgrey;
+}
+
+.total-result {
+  padding: 16px;
+  font-size: larger;
+  font-weight: 500;
 }
 
 .apd-result-title {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.important-value {
+  background-color: #2ea0ff80;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: larger;
+  font-weight: 500;
 }
 
 .linear-apd-setup {
@@ -136,17 +151,18 @@ mat-divider {
   width: 100%;
 }
 
-.additional-apd-results {
+.additional-apd-item {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
-.apd-result-commands {
+.additional-apd-item__commands {
   display: flex;
   gap: 8px;
 }
 
-.apd-result-commands span {
+.additional-apd-item__commands span {
   width: 40px;
 }
-

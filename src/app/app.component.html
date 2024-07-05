@@ -2,8 +2,9 @@
   <header>
     <nav>
       <mat-toolbar>
-        <mat-icon svgIcon="apd"></mat-icon>
-        <span>Duct Calculator</span>
+        <span style="flex: 1 1 auto;"></span>
+        <mat-icon svgIcon="apd-bg-transparent" class="nav-logo"></mat-icon>
+        <span class="nav-title">Duct Calculator</span>
         <span style="flex: 1 1 auto;"></span>
         <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></button>
         <mat-menu #menu yPosition="below" xPosition="before">
@@ -25,7 +26,7 @@
   </main>
 
   <footer>
-    <p>v1.2.1</p>
+    <p>v1.2.2</p>
     <p>made with <span class="hearth">&hearts;</span> in France</p>
   </footer>
 </div>

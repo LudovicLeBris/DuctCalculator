@@ -6,12 +6,12 @@
           <li class="result-list-item">
             <div class="result-list-item-title">
               <mat-icon svgIcon="width"></mat-icon>
-              <p>{{ duct.width.displayName }} / {{ duct.height.displayName }}</p>
+              <p>Largeur / hauteur</p>
             </div>
-            <div>
+            <div class="result-list-item-value important-value">
               <p>
-                {{ duct.width.getValue() | number: '1.0-0' }} <span>{{ duct.width.unit }}</span> /
-                {{ duct.height.getValue() | number: '1.0-0' }} <span>{{ duct.height.unit }}</span>
+                {{ duct.width.getValue() | number: '1.0-0' }} {{ duct.width.unit }} /
+                {{ duct.height.getValue() | number: '1.0-0' }} {{ duct.height.unit }}
               </p>
             </div>
           </li>
@@ -22,9 +22,20 @@
               <mat-icon svgIcon="width"></mat-icon>
               <p>Côté</p>
             </div>
-            <div>
+            <div class="result-list-item-value important-value">
               <p>
-                {{ calculatedSideSize | number: '1.0-0' }} <span>mm</span>
+                {{ calculatedSideSize | number: '1.0-0' }} mm
+              </p>
+            </div>
+          </li>
+          <li class="result-list-item">
+            <div class="result-list-item-title">
+              <mat-icon svgIcon="ratio"></mat-icon>
+              <p>Ratio</p>
+            </div>
+            <div class="result-list-item-value">
+              <p>
+                {{ duct.ratio.getValue() | number: '1.1-1' }}
               </p>
             </div>
           </li>
@@ -34,10 +45,10 @@
         <li class="result-list-item">
           <div class="result-list-item-title">
             <mat-icon svgIcon="{{ airflow.flowrate.icon }}"></mat-icon>
-            <p>{{ airflow.flowrate.displayName }}</p>
+            <p>Débit</p>
           </div>
-          <div>
-            <p>{{ airflow.flowrate.getValue() | number: '1.0-0' }} <span>{{ airflow.flowrate.unit }}</span></p>
+          <div class="result-list-item-value important-value">
+            <p>{{ airflow.flowrate.getValue() | number: '1.0-0' }} {{ airflow.flowrate.unit }}</p>
           </div>
         </li>
       }
@@ -45,10 +56,10 @@
         <li class="result-list-item">
           <div class="result-list-item-title">
             <mat-icon svgIcon="{{ airflow.flowspeed.icon }}"></mat-icon>
-            <p>{{ airflow.flowspeed.displayName }}</p>
+            <p>Vitesse</p>
           </div>
-          <div>
-            <p>{{ airflow.flowspeed.getValue() | number: '1.0-2' }} <span>{{ airflow.flowspeed.unit }}</span></p>
+          <div class="result-list-item-value important-value">
+            <p>{{ airflow.flowspeed.getValue() | number: '1.0-2' }} {{ airflow.flowspeed.unit }}</p>
           </div>
         </li>
       }
@@ -58,8 +69,8 @@
         <mat-icon svgIcon="{{ linearApd.icon }}"></mat-icon>
         <p>{{ linearApd.displayName }}</p>
       </div>
-      <div>
-        <p>{{ linearApd.getValue() | number: '1.2-2' }} <span>{{ linearApd.unit }}/m</span></p>
+      <div class="result-list-item-value">
+        <p>{{ linearApd.getValue() | number: '1.2-2' }} {{ linearApd.unit }}/m</p>
       </div>
     </li>
   </ul>
