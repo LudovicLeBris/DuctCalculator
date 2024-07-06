@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { IconRegisterService } from './services/icon-register.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,7 @@ import { AirSetupComponent } from './components/air-setup/air-setup.component';
   standalone: true,
   imports: [
     RouterOutlet,
+    RouterLink,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -36,5 +37,9 @@ export class AppComponent {
 
   openAirSetupBottomSheet(): void {
     this._airSetupBottomSheet.open(AirSetupComponent);
+  }
+
+  goToAbout() {
+    this.router.navigate(['about']);
   }
 }
