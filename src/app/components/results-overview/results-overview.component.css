@@ -29,15 +29,15 @@ section {
   flex-direction: column;
   gap: 8px;
   padding: 8px;
-  outline: solid 1px lightgrey;
+  /* outline: solid 1px lightgrey; */
   border-radius: 8px;
-  box-shadow: 4px 4px 8px lightgray;
+  /* box-shadow: 4px 4px 8px lightgray; */
 }
 
 .main-results {
   font-size: larger;
   font-weight: 500;
-  background-color: #d1e4ff;
+  /* background-color: #d1e4ff; */
 }
 
 .main-results h4 {

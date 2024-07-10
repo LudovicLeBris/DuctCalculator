@@ -5,7 +5,7 @@
 
 html {
   height: 100%;
-  @include mat.all-component-themes(m3-theme.$light-theme);
+  // @include mat.all-component-themes(m3-theme.$light-theme);
   // @include mat.core-theme(m3-theme.$light-theme);
   // @include mat.button-theme(m3-theme.$light-theme);
 }
@@ -16,4 +16,44 @@ body {height: 100%; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif
 p, h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.light-theme {
+  @include mat.all-component-themes(m3-theme.$light-theme);
+  mat-toolbar, footer {
+    background-color: #2EA0FF;
+  }
+  .result-box {
+    background-color: #d1e4ff;
+    outline: solid 1px lightgray;
+    box-shadow: 4px 4px 4px lightgrey;
+  }
+  .result-box-without-bg {
+    outline: solid 1px lightgray;
+    box-shadow: 4px 4px 4px lightgrey;
+  }
+  .important-value {
+    background-color: #2ea0ff80;
+  }
+}
+
+.dark-theme {
+  @include mat.all-component-themes(m3-theme.$dark-theme);
+  color: white;
+  background-color: #142E57;
+  mat-toolbar, footer {
+    background-color: #146CE1;
+  }
+  .result-box {
+    background-color: #1756B6;
+    outline: solid 1px #0e3b7d;
+    box-shadow: 4px 4px 4px #0e3b7d;
+  }
+  .result-box-without-bg {
+    outline: solid 1px #0e3b7d;
+    box-shadow: 4px 4px 4px #0e3b7d;
+  }
+  .important-value {
+    background-color: #5cb6ff80;
+  }
 }
