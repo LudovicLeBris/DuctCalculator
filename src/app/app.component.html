@@ -23,6 +23,10 @@
             <mat-icon>air</mat-icon>
             <span>Air</span>
           </button>
+          <button mat-menu-item (click)="goToAbout()">
+            <mat-icon>info</mat-icon>
+            <span>&Agrave; propos</span>
+          </button>
         </mat-menu>
       </mat-toolbar>
     </nav>
@@ -33,7 +37,7 @@
   </main>
 
   <footer>
-    <p>v1.4.2</p>
+    <p>v1.4.2 - <a routerLink="/about">&Agrave; propos / mentions légales</a></p>
     <p>made with <span class="hearth">&hearts;</span> in France</p>
   </footer>
 </div>

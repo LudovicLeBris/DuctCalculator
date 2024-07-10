@@ -13,6 +13,7 @@ import { AirSetupComponent } from './components/air-setup/air-setup.component';
   standalone: true,
   imports: [
     RouterOutlet,
+    RouterLink,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -52,5 +53,8 @@ export class AppComponent implements OnInit {
         document.documentElement.classList.remove("light-theme");
         document.documentElement.classList.add("dark-theme");
       }
+
+  goToAbout() {
+    this.router.navigate(['about']);
   }
 }

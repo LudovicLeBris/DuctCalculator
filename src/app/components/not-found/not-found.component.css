@@ -1,0 +1,21 @@
+* {
+  text-align: center;
+}
+
+h1 {
+  margin: 2rem;
+  line-height: 4rem;
+  font-size: xxx-large;
+  color: #2EA0FF;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+button {
+  display: block;
+  margin: 2rem auto;
+  width: 50%;
+}
