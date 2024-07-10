@@ -2,6 +2,13 @@
   <header>
     <nav>
       <mat-toolbar>
+        <button mat-icon-button (click)="toggleTheme()">
+        @if (isLightMode) {
+          <mat-icon>dark_mode</mat-icon>
+        } @else {
+          <mat-icon>light_mode</mat-icon>
+        }
+        </button>
         <span style="flex: 1 1 auto;"></span>
         <mat-icon svgIcon="apd-bg-transparent" class="nav-logo"></mat-icon>
         <span class="nav-title">Duct Calculator</span>
@@ -30,7 +37,7 @@
   </main>
 
   <footer>
-    <p>v1.3.2 - <a routerLink="/about">&Agrave; propos / mentions légales</a></p>
+    <p>v1.4.2 - <a routerLink="/about">&Agrave; propos / mentions légales</a></p>
     <p>made with <span class="hearth">&hearts;</span> in France</p>
   </footer>
 </div>

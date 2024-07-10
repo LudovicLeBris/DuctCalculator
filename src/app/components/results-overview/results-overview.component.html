@@ -9,7 +9,7 @@
 
   <h3>Résumé de la sélection</h3>
 
-  <section class="main-results">
+  <section class="main-results result-box">
     <h4>Pertes de charges</h4>
     <article class="result">
       <div class="result-line">
@@ -46,7 +46,7 @@
     </article>
   </section>
 
-  <section>
+  <section class="result-box-without-bg">
     <h4>Air</h4>
     <article class="result">
       <div class="result-line">
@@ -73,7 +73,7 @@
     </article>
   </section>
 
-  <section>
+  <section class="result-box-without-bg">
     <h4>Flux d'air</h4>
     <article class="result">
       <div class="result-line">
@@ -99,7 +99,7 @@
     </article>
   </section>
 
-  <section>
+  <section class="result-box-without-bg">
     <h4>Gaine</h4>
     <article class="result">
       <div class="result-line">
@@ -184,7 +184,7 @@
   </section>
 
   @if (apd.singularApd.getValue() ) {
-  <section>
+  <section class="result-box-without-bg">
     <h4>Accidents de gaine</h4>
   @for (singularity of singularities.getSingularities(); track singularity) {
     @if (singularity.getQuantity() > 0) {
@@ -205,7 +205,7 @@
   }
 
   @if (apd.additionalApd.getValue()) {
-  <section>
+  <section class="result-box-without-bg">
     <h4>PdC additionnelles</h4>
   @for (additionalApd of additionnalApdList.getAdditionalApdList(); track additionalApd) {
     <article class="result">

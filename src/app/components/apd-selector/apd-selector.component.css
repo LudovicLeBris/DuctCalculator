@@ -29,10 +29,10 @@ mat-divider {
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  outline: solid 1px lightgray;
+  /* outline: solid 1px lightgray; */
   border-radius: 8px;
-  background-color: #d1e4ff;
-  box-shadow: 4px 4px 4px lightgrey;
+  /* background-color: #d1e4ff;
+  box-shadow: 4px 4px 4px lightgrey; */
 }
 
 .total-result {
@@ -130,10 +130,12 @@ mat-divider {
   align-items: center;
   gap: 16px;
   padding: 4px 8px;
+
 }
 
 .singularity-item__content__setup__form p {
   background-color:lightgrey;
+  color: black;
   text-align: end;
   width: 30px;
   padding: 4px;
