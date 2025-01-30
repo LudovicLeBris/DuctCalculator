@@ -25,6 +25,7 @@ import { AirSetupComponent } from './components/air-setup/air-setup.component';
 })
 export class AppComponent implements OnInit {
   isLightMode: boolean = true;
+  currentYear: number = new Date().getFullYear();
 
   constructor (
     private iconRegister: IconRegisterService,
